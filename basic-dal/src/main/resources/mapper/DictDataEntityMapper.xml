@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cuber.basic.mapper.DictDataEntityMapper">
+    <resultMap id="BaseResultMap" type="org.cuber.basic.dto.DictDataEntity">
+        <id column="DICT_CODE" jdbcType="VARCHAR" property="dictCode" />
+        <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+        <result column="TREE_SORT" jdbcType="SMALLINT" property="treeSort" />
+        <result column="TREE_LEAF" jdbcType="VARCHAR" property="treeLeaf" />
+        <result column="TREE_LEVEL" jdbcType="SMALLINT" property="treeLevel" />
+        <result column="DICT_LABEL" jdbcType="VARCHAR" property="dictLabel" />
+        <result column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue" />
+        <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
+        <result column="DICT_TAG" jdbcType="VARCHAR" property="dictTag" />
+        <result column="IS_SYS" jdbcType="VARCHAR" property="isSys" />
+        <result column="IS_DEFAULT" jdbcType="VARCHAR" property="isDefault" />
+        <result column="THE_DESC" jdbcType="VARCHAR" property="theDesc" />
+        <result column="STATUS" jdbcType="VARCHAR" property="status" />
+        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId" />
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime" />
+        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DICT_CODE, PARENT_CODE, TREE_SORT, TREE_LEAF, TREE_LEVEL, DICT_LABEL, DICT_VALUE, DICT_TYPE, DICT_TAG, 
+IS_SYS, IS_DEFAULT, THE_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
+    </sql>
+
+    <insert id="create" parameterType="org.cuber.basic.dto.DictDataEntity">
+        insert into T_DICT_DATA (
+            <include refid="Base_Column_List" />
+        )
+        values (
+            #{dictCode, jdbcType = VARCHAR}, #{parentCode, jdbcType = VARCHAR}, #{treeSort, jdbcType = SMALLINT}, 
+#{treeLeaf, jdbcType = VARCHAR}, #{treeLevel, jdbcType = SMALLINT}, #{dictLabel, jdbcType = VARCHAR}, 
+#{dictValue, jdbcType = VARCHAR}, #{dictType, jdbcType = VARCHAR}, #{dictTag, jdbcType = VARCHAR}, 
+#{isSys, jdbcType = VARCHAR}, #{isDefault, jdbcType = VARCHAR}, #{theDesc, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR}, 
+#{updateUserId, jdbcType = VARCHAR}, #{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
+        )
+    </insert>
+
+    <select id="retrieveById"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from  T_DICT_DATA
+        where
+            dict_code = #{dictCode, jdbcType = VARCHAR}
+    </select>
+
+    <select id="retrievePage"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from  T_DICT_DATA
+        <where>
+            <if test="dictCode != null">
+                and DICT_CODE = #{dictCode,jdbcType=VARCHAR}
+            </if>
+            <if test="parentCode != null">
+                and PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+            </if>
+            <if test="treeSort != null">
+                and TREE_SORT = #{treeSort,jdbcType=SMALLINT}
+            </if>
+            <if test="treeLeaf != null">
+                and TREE_LEAF = #{treeLeaf,jdbcType=VARCHAR}
+            </if>
+            <if test="treeLevel != null">
+                and TREE_LEVEL = #{treeLevel,jdbcType=SMALLINT}
+            </if>
+            <if test="dictLabel != null">
+                and DICT_LABEL = #{dictLabel,jdbcType=VARCHAR}
+            </if>
+            <if test="dictValue != null">
+                and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
+            </if>
+            <if test="dictType != null">
+                and DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+            </if>
+            <if test="dictTag != null">
+                and DICT_TAG = #{dictTag,jdbcType=VARCHAR}
+            </if>
+            <if test="isSys != null">
+                and IS_SYS = #{isSys,jdbcType=VARCHAR}
+            </if>
+            <if test="isDefault != null">
+                and IS_DEFAULT = #{isDefault,jdbcType=VARCHAR}
+            </if>
+            <if test="theDesc != null">
+                and THE_DESC = #{theDesc,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and STATUS = #{status,jdbcType=VARCHAR}
+            </if>
+            <if test="updateUserId != null">
+                and UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR}
+            </if>
+            <if test="createUserId != null">
+                and CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR}
+            </if>
+            <if test="updateDatetime != null">
+                and UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createDatetime != null">
+                and CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDynamic" parameterType="org.cuber.basic.dto.DictDataEntity">
+        update T_DICT_DATA
+        <set>
+        <if test="dictCode != null">
+            DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+        </if>
+        <if test="parentCode != null">
+            PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+        </if>
+        <if test="treeSort != null">
+            TREE_SORT = #{treeSort,jdbcType=SMALLINT},
+        </if>
+        <if test="treeLeaf != null">
+            TREE_LEAF = #{treeLeaf,jdbcType=VARCHAR},
+        </if>
+        <if test="treeLevel != null">
+            TREE_LEVEL = #{treeLevel,jdbcType=SMALLINT},
+        </if>
+        <if test="dictLabel != null">
+            DICT_LABEL = #{dictLabel,jdbcType=VARCHAR},
+        </if>
+        <if test="dictValue != null">
+            DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
+        </if>
+        <if test="dictType != null">
+            DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+        </if>
+        <if test="dictTag != null">
+            DICT_TAG = #{dictTag,jdbcType=VARCHAR},
+        </if>
+        <if test="isSys != null">
+            IS_SYS = #{isSys,jdbcType=VARCHAR},
+        </if>
+        <if test="isDefault != null">
+            IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+        </if>
+        <if test="theDesc != null">
+            THE_DESC = #{theDesc,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null">
+            STATUS = #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="updateUserId != null">
+            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+        </if>
+        <if test="createUserId != null">
+            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+        </if>
+            UPDATE_DATETIME = current_timestamp,
+            CREATE_DATETIME = current_timestamp,
+        </set>
+        <where>
+            dict_code = #{dictCode, jdbcType = VARCHAR}
+        </where>
+    </update>
+
+    <update id="updateById" parameterType="org.cuber.basic.dto.DictDataEntity">
+        update T_DICT_DATA
+        <set>
+           DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+           PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+           TREE_SORT = #{treeSort,jdbcType=SMALLINT},
+           TREE_LEAF = #{treeLeaf,jdbcType=VARCHAR},
+           TREE_LEVEL = #{treeLevel,jdbcType=SMALLINT},
+           DICT_LABEL = #{dictLabel,jdbcType=VARCHAR},
+           DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
+           DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+           DICT_TAG = #{dictTag,jdbcType=VARCHAR},
+           IS_SYS = #{isSys,jdbcType=VARCHAR},
+           IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+           THE_DESC = #{theDesc,jdbcType=VARCHAR},
+           STATUS = #{status,jdbcType=VARCHAR},
+           UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+           CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+           UPDATE_DATETIME = current_timestamp,
+           CREATE_DATETIME = current_timestamp,
+        </set>
+        <where>
+            dict_code = #{dictCode, jdbcType = VARCHAR}
+        </where>
+    </update>
+
+    <select id="retrieveAll"  resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from  T_DICT_DATA
+    </select>
+
+    <delete id="deleteById">
+        delete from T_DICT_DATA
+        where
+        dict_code = #{dictCode, jdbcType = VARCHAR}
+    </delete>
+</mapper>

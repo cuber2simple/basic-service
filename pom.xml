@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.cuber</groupId>
+    <artifactId>basic-service</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>org.cuber</groupId>
+        <artifactId>ids-stub</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modules>
+        <module>basic-dal</module>
+        <module>basic-biz</module>
+        <module>basic-facade</module>
+        <module>basic-web</module>
+    </modules>
+    <properties>
+        <stub.version>1.0-SNAPSHOT</stub.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.cuber</groupId>
+                <artifactId>basic-dal</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.cuber</groupId>
+                <artifactId>basic-biz</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.cuber</groupId>
+                <artifactId>basic-facade</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.cuber</groupId>
+                <artifactId>basic-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.cuber</groupId>
+            <artifactId>stub-base</artifactId>
+            <version>${stub.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.cuber</groupId>
+            <artifactId>stub-starter</artifactId>
+            <version>${stub.version}</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.6.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>UTF-8</encoding>
+                        <fork>true</fork>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.4</version>
+                    <configuration>
+                        <show>private</show>
+                        <aggregate>true</aggregate>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
