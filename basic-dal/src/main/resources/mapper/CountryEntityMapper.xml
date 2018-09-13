@@ -2,58 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cuber.basic.mapper.CountryEntityMapper">
     <resultMap id="BaseResultMap" type="org.cuber.basic.dto.CountryEntity">
-        <id column="ID" jdbcType="VARCHAR" property="id" />
-        <result column="ALPHA_CODE_2" jdbcType="VARCHAR" property="alphaCode2" />
-        <result column="ALPHA_CODE_3" jdbcType="VARCHAR" property="alphaCode3" />
-        <result column="NUMBER_CODE" jdbcType="VARCHAR" property="numberCode" />
-        <result column="ISO3166_2" jdbcType="VARCHAR" property="iso31662" />
-        <result column="I18N_KEY" jdbcType="VARCHAR" property="i18nKey" />
-        <result column="NAME" jdbcType="VARCHAR" property="name" />
-        <result column="REGION" jdbcType="VARCHAR" property="region" />
-        <result column="SUB_REGION" jdbcType="VARCHAR" property="subRegion" />
-        <result column="INTERMEDIATE_REGION" jdbcType="VARCHAR" property="intermediateRegion" />
-        <result column="REGION_CODE" jdbcType="VARCHAR" property="regionCode" />
-        <result column="SUB_REGION_CODE" jdbcType="VARCHAR" property="subRegionCode" />
-        <result column="INTERMEDIATE_REGION_CODE" jdbcType="VARCHAR" property="intermediateRegionCode" />
-        <result column="STATUS" jdbcType="VARCHAR" property="status" />
-        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId" />
-        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
-        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime" />
-        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime" />
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="ALPHA_CODE_2" jdbcType="VARCHAR" property="alphaCode2"/>
+        <result column="ALPHA_CODE_3" jdbcType="VARCHAR" property="alphaCode3"/>
+        <result column="NUMBER_CODE" jdbcType="VARCHAR" property="numberCode"/>
+        <result column="ISO3166_2" jdbcType="VARCHAR" property="iso31662"/>
+        <result column="I18N_KEY" jdbcType="VARCHAR" property="i18nKey"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="REGION" jdbcType="VARCHAR" property="region"/>
+        <result column="SUB_REGION" jdbcType="VARCHAR" property="subRegion"/>
+        <result column="INTERMEDIATE_REGION" jdbcType="VARCHAR" property="intermediateRegion"/>
+        <result column="REGION_CODE" jdbcType="VARCHAR" property="regionCode"/>
+        <result column="SUB_REGION_CODE" jdbcType="VARCHAR" property="subRegionCode"/>
+        <result column="INTERMEDIATE_REGION_CODE" jdbcType="VARCHAR" property="intermediateRegionCode"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime"/>
+        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         ID, ALPHA_CODE_2, ALPHA_CODE_3, NUMBER_CODE, ISO3166_2, I18N_KEY, NAME, REGION, SUB_REGION, INTERMEDIATE_REGION, 
-REGION_CODE, SUB_REGION_CODE, INTERMEDIATE_REGION_CODE, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, 
-CREATE_DATETIME
+        REGION_CODE, SUB_REGION_CODE, INTERMEDIATE_REGION_CODE, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME,
+        CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.CountryEntity">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select nextval('SEQ_COUNTRY_3166')
+        </selectKey>
         insert into T_COUNTRY_3166 (
-            <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         )
         values (
-            #{id, jdbcType = VARCHAR}, #{alphaCode2, jdbcType = VARCHAR}, #{alphaCode3, jdbcType = VARCHAR}, 
-#{numberCode, jdbcType = VARCHAR}, #{iso31662, jdbcType = VARCHAR}, #{i18nKey, jdbcType = VARCHAR}, 
-#{name, jdbcType = VARCHAR}, #{region, jdbcType = VARCHAR}, #{subRegion, jdbcType = VARCHAR}, #{intermediateRegion, jdbcType = VARCHAR}, 
-#{regionCode, jdbcType = VARCHAR}, #{subRegionCode, jdbcType = VARCHAR}, #{intermediateRegionCode, jdbcType = VARCHAR}, 
-#{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, #{createUserId, jdbcType = VARCHAR}, 
-current_timestamp, current_timestamp
+        #{id, jdbcType = VARCHAR}, #{alphaCode2, jdbcType = VARCHAR}, #{alphaCode3, jdbcType = VARCHAR},
+        #{numberCode, jdbcType = VARCHAR}, #{iso31662, jdbcType = VARCHAR}, #{i18nKey, jdbcType = VARCHAR},
+        #{name, jdbcType = VARCHAR}, #{region, jdbcType = VARCHAR}, #{subRegion, jdbcType = VARCHAR},
+        #{intermediateRegion, jdbcType = VARCHAR},#{regionCode, jdbcType = VARCHAR},
+        #{subRegionCode, jdbcType = VARCHAR},#{intermediateRegionCode, jdbcType = VARCHAR},
+        #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, #{createUserId, jdbcType = VARCHAR},
+        current_timestamp, current_timestamp
         )
     </insert>
 
-    <select id="retrieveById"  resultMap="BaseResultMap">
+    <select id="retrieveById" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_COUNTRY_3166
+        <include refid="Base_Column_List"/>
+        from T_COUNTRY_3166
         where
-            id = #{id, jdbcType = VARCHAR}
+        id = #{id, jdbcType = VARCHAR}
     </select>
 
-    <select id="retrievePage"  resultMap="BaseResultMap">
+    <select id="retrievePage" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_COUNTRY_3166
+        <include refid="Base_Column_List"/>
+        from T_COUNTRY_3166
         <where>
             <if test="id != null">
                 and ID = #{id,jdbcType=VARCHAR}
@@ -115,54 +119,54 @@ current_timestamp, current_timestamp
     <update id="updateDynamic" parameterType="org.cuber.basic.dto.CountryEntity">
         update T_COUNTRY_3166
         <set>
-        <if test="id != null">
-            ID = #{id,jdbcType=VARCHAR},
-        </if>
-        <if test="alphaCode2 != null">
-            ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR},
-        </if>
-        <if test="alphaCode3 != null">
-            ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR},
-        </if>
-        <if test="numberCode != null">
-            NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
-        </if>
-        <if test="iso31662 != null">
-            ISO3166_2 = #{iso31662,jdbcType=VARCHAR},
-        </if>
-        <if test="i18nKey != null">
-            I18N_KEY = #{i18nKey,jdbcType=VARCHAR},
-        </if>
-        <if test="name != null">
-            NAME = #{name,jdbcType=VARCHAR},
-        </if>
-        <if test="region != null">
-            REGION = #{region,jdbcType=VARCHAR},
-        </if>
-        <if test="subRegion != null">
-            SUB_REGION = #{subRegion,jdbcType=VARCHAR},
-        </if>
-        <if test="intermediateRegion != null">
-            INTERMEDIATE_REGION = #{intermediateRegion,jdbcType=VARCHAR},
-        </if>
-        <if test="regionCode != null">
-            REGION_CODE = #{regionCode,jdbcType=VARCHAR},
-        </if>
-        <if test="subRegionCode != null">
-            SUB_REGION_CODE = #{subRegionCode,jdbcType=VARCHAR},
-        </if>
-        <if test="intermediateRegionCode != null">
-            INTERMEDIATE_REGION_CODE = #{intermediateRegionCode,jdbcType=VARCHAR},
-        </if>
-        <if test="status != null">
-            STATUS = #{status,jdbcType=VARCHAR},
-        </if>
-        <if test="updateUserId != null">
-            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-        </if>
-        <if test="createUserId != null">
-            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-        </if>
+            <if test="id != null">
+                ID = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="alphaCode2 != null">
+                ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR},
+            </if>
+            <if test="alphaCode3 != null">
+                ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR},
+            </if>
+            <if test="numberCode != null">
+                NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="iso31662 != null">
+                ISO3166_2 = #{iso31662,jdbcType=VARCHAR},
+            </if>
+            <if test="i18nKey != null">
+                I18N_KEY = #{i18nKey,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                REGION = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="subRegion != null">
+                SUB_REGION = #{subRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="intermediateRegion != null">
+                INTERMEDIATE_REGION = #{intermediateRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="regionCode != null">
+                REGION_CODE = #{regionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="subRegionCode != null">
+                SUB_REGION_CODE = #{subRegionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="intermediateRegionCode != null">
+                INTERMEDIATE_REGION_CODE = #{intermediateRegionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserId != null">
+                UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            </if>
             UPDATE_DATETIME = current_timestamp,
             CREATE_DATETIME = current_timestamp,
         </set>
@@ -174,34 +178,34 @@ current_timestamp, current_timestamp
     <update id="updateById" parameterType="org.cuber.basic.dto.CountryEntity">
         update T_COUNTRY_3166
         <set>
-           ID = #{id,jdbcType=VARCHAR},
-           ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR},
-           ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR},
-           NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
-           ISO3166_2 = #{iso31662,jdbcType=VARCHAR},
-           I18N_KEY = #{i18nKey,jdbcType=VARCHAR},
-           NAME = #{name,jdbcType=VARCHAR},
-           REGION = #{region,jdbcType=VARCHAR},
-           SUB_REGION = #{subRegion,jdbcType=VARCHAR},
-           INTERMEDIATE_REGION = #{intermediateRegion,jdbcType=VARCHAR},
-           REGION_CODE = #{regionCode,jdbcType=VARCHAR},
-           SUB_REGION_CODE = #{subRegionCode,jdbcType=VARCHAR},
-           INTERMEDIATE_REGION_CODE = #{intermediateRegionCode,jdbcType=VARCHAR},
-           STATUS = #{status,jdbcType=VARCHAR},
-           UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-           CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-           UPDATE_DATETIME = current_timestamp,
-           CREATE_DATETIME = current_timestamp,
+            ID = #{id,jdbcType=VARCHAR},
+            ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR},
+            ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR},
+            NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
+            ISO3166_2 = #{iso31662,jdbcType=VARCHAR},
+            I18N_KEY = #{i18nKey,jdbcType=VARCHAR},
+            NAME = #{name,jdbcType=VARCHAR},
+            REGION = #{region,jdbcType=VARCHAR},
+            SUB_REGION = #{subRegion,jdbcType=VARCHAR},
+            INTERMEDIATE_REGION = #{intermediateRegion,jdbcType=VARCHAR},
+            REGION_CODE = #{regionCode,jdbcType=VARCHAR},
+            SUB_REGION_CODE = #{subRegionCode,jdbcType=VARCHAR},
+            INTERMEDIATE_REGION_CODE = #{intermediateRegionCode,jdbcType=VARCHAR},
+            STATUS = #{status,jdbcType=VARCHAR},
+            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            UPDATE_DATETIME = current_timestamp,
+            CREATE_DATETIME = current_timestamp,
         </set>
         <where>
             id = #{id, jdbcType = VARCHAR}
         </where>
     </update>
 
-    <select id="retrieveAll"  resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from  T_COUNTRY_3166
+    <select id="retrieveAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_COUNTRY_3166
     </select>
 
     <delete id="deleteById">

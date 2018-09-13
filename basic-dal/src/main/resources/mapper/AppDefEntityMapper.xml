@@ -2,54 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cuber.basic.mapper.AppDefEntityMapper">
     <resultMap id="BaseResultMap" type="org.cuber.basic.dto.AppDefEntity">
-        <id column="ID" jdbcType="VARCHAR" property="id" />
-        <result column="APP_NAME" jdbcType="VARCHAR" property="appName" />
-        <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
-        <result column="OWN_USER_ID" jdbcType="VARCHAR" property="ownUserId" />
-        <result column="SERVER_PORT" jdbcType="SMALLINT" property="serverPort" />
-        <result column="DUBBO_PORT" jdbcType="INTEGER" property="dubboPort" />
-        <result column="KAFKA_TOPIC" jdbcType="VARCHAR" property="kafkaTopic" />
-        <result column="EXT_SETTING" jdbcType="VARCHAR" property="extSetting" />
-        <result column="EXT1_SETTING" jdbcType="VARCHAR" property="ext1Setting" />
-        <result column="CONTEXT_PATH" jdbcType="VARCHAR" property="contextPath" />
-        <result column="APP_DESC" jdbcType="VARCHAR" property="appDesc" />
-        <result column="STATUS" jdbcType="VARCHAR" property="status" />
-        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId" />
-        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
-        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime" />
-        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime" />
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="APP_NAME" jdbcType="VARCHAR" property="appName"/>
+        <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName"/>
+        <result column="OWN_USER_ID" jdbcType="VARCHAR" property="ownUserId"/>
+        <result column="SERVER_PORT" jdbcType="SMALLINT" property="serverPort"/>
+        <result column="DUBBO_PORT" jdbcType="INTEGER" property="dubboPort"/>
+        <result column="KAFKA_TOPIC" jdbcType="VARCHAR" property="kafkaTopic"/>
+        <result column="EXT_SETTING" jdbcType="VARCHAR" property="extSetting"/>
+        <result column="EXT1_SETTING" jdbcType="VARCHAR" property="ext1Setting"/>
+        <result column="CONTEXT_PATH" jdbcType="VARCHAR" property="contextPath"/>
+        <result column="APP_DESC" jdbcType="VARCHAR" property="appDesc"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime"/>
+        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         ID, APP_NAME, GROUP_NAME, OWN_USER_ID, SERVER_PORT, DUBBO_PORT, KAFKA_TOPIC, EXT_SETTING, EXT1_SETTING, 
-CONTEXT_PATH, APP_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
+        CONTEXT_PATH, APP_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.AppDefEntity">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select nextval('SEQ_APP_DEF')
+        </selectKey>
         insert into T_APP_DEF (
-            <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         )
         values (
-            #{id, jdbcType = VARCHAR}, #{appName, jdbcType = VARCHAR}, #{groupName, jdbcType = VARCHAR}, #{ownUserId, jdbcType = VARCHAR}, 
-#{serverPort, jdbcType = SMALLINT}, #{dubboPort, jdbcType = INTEGER}, #{kafkaTopic, jdbcType = VARCHAR}, 
-#{extSetting, jdbcType = VARCHAR}, #{ext1Setting, jdbcType = VARCHAR}, #{contextPath, jdbcType = VARCHAR}, 
-#{appDesc, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, 
-#{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
+        #{id, jdbcType = VARCHAR}, #{appName, jdbcType = VARCHAR}, #{groupName, jdbcType = VARCHAR},
+        #{ownUserId, jdbcType = VARCHAR},#{serverPort, jdbcType = SMALLINT}, #{dubboPort, jdbcType = INTEGER},
+        #{kafkaTopic, jdbcType = VARCHAR},#{extSetting, jdbcType = VARCHAR}, #{ext1Setting, jdbcType = VARCHAR},
+        #{contextPath, jdbcType = VARCHAR},#{appDesc, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR},
+        #{updateUserId, jdbcType = VARCHAR},#{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
         )
     </insert>
 
-    <select id="retrieveById"  resultMap="BaseResultMap">
+    <select id="retrieveById" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_APP_DEF
+        <include refid="Base_Column_List"/>
+        from T_APP_DEF
         where
-            id = #{id, jdbcType = VARCHAR}
+        id = #{id, jdbcType = VARCHAR}
     </select>
 
-    <select id="retrievePage"  resultMap="BaseResultMap">
+    <select id="retrievePage" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_APP_DEF
+        <include refid="Base_Column_List"/>
+        from T_APP_DEF
         <where>
             <if test="id != null">
                 and ID = #{id,jdbcType=VARCHAR}
@@ -105,48 +108,48 @@ CONTEXT_PATH, APP_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME,
     <update id="updateDynamic" parameterType="org.cuber.basic.dto.AppDefEntity">
         update T_APP_DEF
         <set>
-        <if test="id != null">
-            ID = #{id,jdbcType=VARCHAR},
-        </if>
-        <if test="appName != null">
-            APP_NAME = #{appName,jdbcType=VARCHAR},
-        </if>
-        <if test="groupName != null">
-            GROUP_NAME = #{groupName,jdbcType=VARCHAR},
-        </if>
-        <if test="ownUserId != null">
-            OWN_USER_ID = #{ownUserId,jdbcType=VARCHAR},
-        </if>
-        <if test="serverPort != null">
-            SERVER_PORT = #{serverPort,jdbcType=SMALLINT},
-        </if>
-        <if test="dubboPort != null">
-            DUBBO_PORT = #{dubboPort,jdbcType=INTEGER},
-        </if>
-        <if test="kafkaTopic != null">
-            KAFKA_TOPIC = #{kafkaTopic,jdbcType=VARCHAR},
-        </if>
-        <if test="extSetting != null">
-            EXT_SETTING = #{extSetting,jdbcType=VARCHAR},
-        </if>
-        <if test="ext1Setting != null">
-            EXT1_SETTING = #{ext1Setting,jdbcType=VARCHAR},
-        </if>
-        <if test="contextPath != null">
-            CONTEXT_PATH = #{contextPath,jdbcType=VARCHAR},
-        </if>
-        <if test="appDesc != null">
-            APP_DESC = #{appDesc,jdbcType=VARCHAR},
-        </if>
-        <if test="status != null">
-            STATUS = #{status,jdbcType=VARCHAR},
-        </if>
-        <if test="updateUserId != null">
-            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-        </if>
-        <if test="createUserId != null">
-            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-        </if>
+            <if test="id != null">
+                ID = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                APP_NAME = #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="ownUserId != null">
+                OWN_USER_ID = #{ownUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="serverPort != null">
+                SERVER_PORT = #{serverPort,jdbcType=SMALLINT},
+            </if>
+            <if test="dubboPort != null">
+                DUBBO_PORT = #{dubboPort,jdbcType=INTEGER},
+            </if>
+            <if test="kafkaTopic != null">
+                KAFKA_TOPIC = #{kafkaTopic,jdbcType=VARCHAR},
+            </if>
+            <if test="extSetting != null">
+                EXT_SETTING = #{extSetting,jdbcType=VARCHAR},
+            </if>
+            <if test="ext1Setting != null">
+                EXT1_SETTING = #{ext1Setting,jdbcType=VARCHAR},
+            </if>
+            <if test="contextPath != null">
+                CONTEXT_PATH = #{contextPath,jdbcType=VARCHAR},
+            </if>
+            <if test="appDesc != null">
+                APP_DESC = #{appDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserId != null">
+                UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            </if>
             UPDATE_DATETIME = current_timestamp,
             CREATE_DATETIME = current_timestamp,
         </set>
@@ -158,32 +161,32 @@ CONTEXT_PATH, APP_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME,
     <update id="updateById" parameterType="org.cuber.basic.dto.AppDefEntity">
         update T_APP_DEF
         <set>
-           ID = #{id,jdbcType=VARCHAR},
-           APP_NAME = #{appName,jdbcType=VARCHAR},
-           GROUP_NAME = #{groupName,jdbcType=VARCHAR},
-           OWN_USER_ID = #{ownUserId,jdbcType=VARCHAR},
-           SERVER_PORT = #{serverPort,jdbcType=SMALLINT},
-           DUBBO_PORT = #{dubboPort,jdbcType=INTEGER},
-           KAFKA_TOPIC = #{kafkaTopic,jdbcType=VARCHAR},
-           EXT_SETTING = #{extSetting,jdbcType=VARCHAR},
-           EXT1_SETTING = #{ext1Setting,jdbcType=VARCHAR},
-           CONTEXT_PATH = #{contextPath,jdbcType=VARCHAR},
-           APP_DESC = #{appDesc,jdbcType=VARCHAR},
-           STATUS = #{status,jdbcType=VARCHAR},
-           UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-           CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-           UPDATE_DATETIME = current_timestamp,
-           CREATE_DATETIME = current_timestamp,
+            ID = #{id,jdbcType=VARCHAR},
+            APP_NAME = #{appName,jdbcType=VARCHAR},
+            GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+            OWN_USER_ID = #{ownUserId,jdbcType=VARCHAR},
+            SERVER_PORT = #{serverPort,jdbcType=SMALLINT},
+            DUBBO_PORT = #{dubboPort,jdbcType=INTEGER},
+            KAFKA_TOPIC = #{kafkaTopic,jdbcType=VARCHAR},
+            EXT_SETTING = #{extSetting,jdbcType=VARCHAR},
+            EXT1_SETTING = #{ext1Setting,jdbcType=VARCHAR},
+            CONTEXT_PATH = #{contextPath,jdbcType=VARCHAR},
+            APP_DESC = #{appDesc,jdbcType=VARCHAR},
+            STATUS = #{status,jdbcType=VARCHAR},
+            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            UPDATE_DATETIME = current_timestamp,
+            CREATE_DATETIME = current_timestamp,
         </set>
         <where>
             id = #{id, jdbcType = VARCHAR}
         </where>
     </update>
 
-    <select id="retrieveAll"  resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from  T_APP_DEF
+    <select id="retrieveAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_APP_DEF
     </select>
 
     <delete id="deleteById">

@@ -2,51 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cuber.basic.mapper.BizTableDefEntityMapper">
     <resultMap id="BaseResultMap" type="org.cuber.basic.dto.BizTableDefEntity">
-        <id column="ID" jdbcType="VARCHAR" property="id" />
-        <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
-        <result column="SCHEMA" jdbcType="VARCHAR" property="schema" />
-        <result column="APP_NAME" jdbcType="VARCHAR" property="appName" />
-        <result column="T_CLASS" jdbcType="VARCHAR" property="tClass" />
-        <result column="PATTERN" jdbcType="VARCHAR" property="pattern" />
-        <result column="BIZ_CODE" jdbcType="SMALLINT" property="bizCode" />
-        <result column="PREFIX" jdbcType="VARCHAR" property="prefix" />
-        <result column="THE_DESC" jdbcType="VARCHAR" property="theDesc" />
-        <result column="IS_SYS" jdbcType="VARCHAR" property="isSys" />
-        <result column="STATUS" jdbcType="VARCHAR" property="status" />
-        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId" />
-        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
-        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime" />
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName"/>
+        <result column="SCHEMA" jdbcType="VARCHAR" property="schema"/>
+        <result column="APP_NAME" jdbcType="VARCHAR" property="appName"/>
+        <result column="T_CLASS" jdbcType="VARCHAR" property="tClass"/>
+        <result column="PATTERN" jdbcType="VARCHAR" property="pattern"/>
+        <result column="BIZ_CODE" jdbcType="SMALLINT" property="bizCode"/>
+        <result column="PREFIX" jdbcType="VARCHAR" property="prefix"/>
+        <result column="THE_DESC" jdbcType="VARCHAR" property="theDesc"/>
+        <result column="IS_SYS" jdbcType="VARCHAR" property="isSys"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, TABLE_NAME, SCHEMA, APP_NAME, T_CLASS, PATTERN, BIZ_CODE, PREFIX, THE_DESC, IS_SYS, STATUS, UPDATE_USER_ID, 
-CREATE_USER_ID, CREATE_DATETIME
+        ID, TABLE_NAME, SCHEMA, APP_NAME, T_CLASS, PATTERN, BIZ_CODE, PREFIX, THE_DESC, IS_SYS, STATUS,
+        UPDATE_USER_ID, CREATE_USER_ID, CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.BizTableDefEntity">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select nextval('SEQ_BIZ_TABLE_CONF')
+        </selectKey>
         insert into T_BIZ_TABLE_DEF (
-            <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         )
         values (
-            #{id, jdbcType = VARCHAR}, #{tableName, jdbcType = VARCHAR}, #{schema, jdbcType = VARCHAR}, #{appName, jdbcType = VARCHAR}, 
-#{tClass, jdbcType = VARCHAR}, #{pattern, jdbcType = VARCHAR}, #{bizCode, jdbcType = SMALLINT}, #{prefix, jdbcType = VARCHAR}, 
-#{theDesc, jdbcType = VARCHAR}, #{isSys, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, 
-#{createUserId, jdbcType = VARCHAR}, current_timestamp
+        #{id, jdbcType = VARCHAR}, #{tableName, jdbcType = VARCHAR}, #{schema, jdbcType = VARCHAR},
+        #{appName, jdbcType = VARCHAR},#{tClass, jdbcType = VARCHAR}, #{pattern, jdbcType = VARCHAR},
+        #{bizCode, jdbcType = SMALLINT}, #{prefix, jdbcType = VARCHAR}, #{theDesc, jdbcType = VARCHAR},
+        #{isSys, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR},#{updateUserId, jdbcType = VARCHAR},
+        #{createUserId, jdbcType = VARCHAR}, current_timestamp
         )
     </insert>
 
-    <select id="retrieveById"  resultMap="BaseResultMap">
+    <select id="retrieveById" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_BIZ_TABLE_DEF
+        <include refid="Base_Column_List"/>
+        from T_BIZ_TABLE_DEF
         where
-            id = #{id, jdbcType = VARCHAR}
+        id = #{id, jdbcType = VARCHAR}
     </select>
 
-    <select id="retrievePage"  resultMap="BaseResultMap">
+    <select id="retrievePage" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_BIZ_TABLE_DEF
+        <include refid="Base_Column_List"/>
+        from T_BIZ_TABLE_DEF
         <where>
             <if test="id != null">
                 and ID = #{id,jdbcType=VARCHAR}
@@ -96,45 +100,45 @@ CREATE_USER_ID, CREATE_DATETIME
     <update id="updateDynamic" parameterType="org.cuber.basic.dto.BizTableDefEntity">
         update T_BIZ_TABLE_DEF
         <set>
-        <if test="id != null">
-            ID = #{id,jdbcType=VARCHAR},
-        </if>
-        <if test="tableName != null">
-            TABLE_NAME = #{tableName,jdbcType=VARCHAR},
-        </if>
-        <if test="schema != null">
-            SCHEMA = #{schema,jdbcType=VARCHAR},
-        </if>
-        <if test="appName != null">
-            APP_NAME = #{appName,jdbcType=VARCHAR},
-        </if>
-        <if test="tClass != null">
-            T_CLASS = #{tClass,jdbcType=VARCHAR},
-        </if>
-        <if test="pattern != null">
-            PATTERN = #{pattern,jdbcType=VARCHAR},
-        </if>
-        <if test="bizCode != null">
-            BIZ_CODE = #{bizCode,jdbcType=SMALLINT},
-        </if>
-        <if test="prefix != null">
-            PREFIX = #{prefix,jdbcType=VARCHAR},
-        </if>
-        <if test="theDesc != null">
-            THE_DESC = #{theDesc,jdbcType=VARCHAR},
-        </if>
-        <if test="isSys != null">
-            IS_SYS = #{isSys,jdbcType=VARCHAR},
-        </if>
-        <if test="status != null">
-            STATUS = #{status,jdbcType=VARCHAR},
-        </if>
-        <if test="updateUserId != null">
-            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-        </if>
-        <if test="createUserId != null">
-            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-        </if>
+            <if test="id != null">
+                ID = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName != null">
+                TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="schema != null">
+                SCHEMA = #{schema,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                APP_NAME = #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="tClass != null">
+                T_CLASS = #{tClass,jdbcType=VARCHAR},
+            </if>
+            <if test="pattern != null">
+                PATTERN = #{pattern,jdbcType=VARCHAR},
+            </if>
+            <if test="bizCode != null">
+                BIZ_CODE = #{bizCode,jdbcType=SMALLINT},
+            </if>
+            <if test="prefix != null">
+                PREFIX = #{prefix,jdbcType=VARCHAR},
+            </if>
+            <if test="theDesc != null">
+                THE_DESC = #{theDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="isSys != null">
+                IS_SYS = #{isSys,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserId != null">
+                UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            </if>
             CREATE_DATETIME = current_timestamp,
         </set>
         <where>
@@ -145,30 +149,30 @@ CREATE_USER_ID, CREATE_DATETIME
     <update id="updateById" parameterType="org.cuber.basic.dto.BizTableDefEntity">
         update T_BIZ_TABLE_DEF
         <set>
-           ID = #{id,jdbcType=VARCHAR},
-           TABLE_NAME = #{tableName,jdbcType=VARCHAR},
-           SCHEMA = #{schema,jdbcType=VARCHAR},
-           APP_NAME = #{appName,jdbcType=VARCHAR},
-           T_CLASS = #{tClass,jdbcType=VARCHAR},
-           PATTERN = #{pattern,jdbcType=VARCHAR},
-           BIZ_CODE = #{bizCode,jdbcType=SMALLINT},
-           PREFIX = #{prefix,jdbcType=VARCHAR},
-           THE_DESC = #{theDesc,jdbcType=VARCHAR},
-           IS_SYS = #{isSys,jdbcType=VARCHAR},
-           STATUS = #{status,jdbcType=VARCHAR},
-           UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-           CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-           CREATE_DATETIME = current_timestamp,
+            ID = #{id,jdbcType=VARCHAR},
+            TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+            SCHEMA = #{schema,jdbcType=VARCHAR},
+            APP_NAME = #{appName,jdbcType=VARCHAR},
+            T_CLASS = #{tClass,jdbcType=VARCHAR},
+            PATTERN = #{pattern,jdbcType=VARCHAR},
+            BIZ_CODE = #{bizCode,jdbcType=SMALLINT},
+            PREFIX = #{prefix,jdbcType=VARCHAR},
+            THE_DESC = #{theDesc,jdbcType=VARCHAR},
+            IS_SYS = #{isSys,jdbcType=VARCHAR},
+            STATUS = #{status,jdbcType=VARCHAR},
+            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            CREATE_DATETIME = current_timestamp,
         </set>
         <where>
             id = #{id, jdbcType = VARCHAR}
         </where>
     </update>
 
-    <select id="retrieveAll"  resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from  T_BIZ_TABLE_DEF
+    <select id="retrieveAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_BIZ_TABLE_DEF
     </select>
 
     <delete id="deleteById">

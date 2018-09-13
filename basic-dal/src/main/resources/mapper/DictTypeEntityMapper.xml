@@ -2,46 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cuber.basic.mapper.DictTypeEntityMapper">
     <resultMap id="BaseResultMap" type="org.cuber.basic.dto.DictTypeEntity">
-        <id column="ID" jdbcType="VARCHAR" property="id" />
-        <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
-        <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
-        <result column="THE_DESC" jdbcType="VARCHAR" property="theDesc" />
-        <result column="IS_SYS" jdbcType="VARCHAR" property="isSys" />
-        <result column="STATUS" jdbcType="VARCHAR" property="status" />
-        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId" />
-        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
-        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime" />
-        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime" />
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName"/>
+        <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType"/>
+        <result column="THE_DESC" jdbcType="VARCHAR" property="theDesc"/>
+        <result column="IS_SYS" jdbcType="VARCHAR" property="isSys"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime"/>
+        <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         ID, DICT_NAME, DICT_TYPE, THE_DESC, IS_SYS, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, 
-CREATE_DATETIME
+        CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.DictTypeEntity">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select nextval('SEQ_DICT_TYPE_ID')
+        </selectKey>
         insert into T_DICT_TYPE (
-            <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         )
         values (
-            #{id, jdbcType = VARCHAR}, #{dictName, jdbcType = VARCHAR}, #{dictType, jdbcType = VARCHAR}, #{theDesc, jdbcType = VARCHAR}, 
-#{isSys, jdbcType = VARCHAR}, #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, 
-#{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
+        #{id, jdbcType = VARCHAR}, #{dictName, jdbcType = VARCHAR}, #{dictType, jdbcType = VARCHAR},
+        #{theDesc, jdbcType = VARCHAR}, #{isSys, jdbcType = VARCHAR},
+        #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR},
+        #{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
         )
     </insert>
 
-    <select id="retrieveById"  resultMap="BaseResultMap">
+    <select id="retrieveById" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_DICT_TYPE
+        <include refid="Base_Column_List"/>
+        from T_DICT_TYPE
         where
-            id = #{id, jdbcType = VARCHAR}
+        id = #{id, jdbcType = VARCHAR}
     </select>
 
-    <select id="retrievePage"  resultMap="BaseResultMap">
+    <select id="retrievePage" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from  T_DICT_TYPE
+        <include refid="Base_Column_List"/>
+        from T_DICT_TYPE
         <where>
             <if test="id != null">
                 and ID = #{id,jdbcType=VARCHAR}
@@ -79,30 +83,30 @@ CREATE_DATETIME
     <update id="updateDynamic" parameterType="org.cuber.basic.dto.DictTypeEntity">
         update T_DICT_TYPE
         <set>
-        <if test="id != null">
-            ID = #{id,jdbcType=VARCHAR},
-        </if>
-        <if test="dictName != null">
-            DICT_NAME = #{dictName,jdbcType=VARCHAR},
-        </if>
-        <if test="dictType != null">
-            DICT_TYPE = #{dictType,jdbcType=VARCHAR},
-        </if>
-        <if test="theDesc != null">
-            THE_DESC = #{theDesc,jdbcType=VARCHAR},
-        </if>
-        <if test="isSys != null">
-            IS_SYS = #{isSys,jdbcType=VARCHAR},
-        </if>
-        <if test="status != null">
-            STATUS = #{status,jdbcType=VARCHAR},
-        </if>
-        <if test="updateUserId != null">
-            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-        </if>
-        <if test="createUserId != null">
-            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-        </if>
+            <if test="id != null">
+                ID = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="dictName != null">
+                DICT_NAME = #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictType != null">
+                DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+            </if>
+            <if test="theDesc != null">
+                THE_DESC = #{theDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="isSys != null">
+                IS_SYS = #{isSys,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserId != null">
+                UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            </if>
             UPDATE_DATETIME = current_timestamp,
             CREATE_DATETIME = current_timestamp,
         </set>
@@ -114,26 +118,26 @@ CREATE_DATETIME
     <update id="updateById" parameterType="org.cuber.basic.dto.DictTypeEntity">
         update T_DICT_TYPE
         <set>
-           ID = #{id,jdbcType=VARCHAR},
-           DICT_NAME = #{dictName,jdbcType=VARCHAR},
-           DICT_TYPE = #{dictType,jdbcType=VARCHAR},
-           THE_DESC = #{theDesc,jdbcType=VARCHAR},
-           IS_SYS = #{isSys,jdbcType=VARCHAR},
-           STATUS = #{status,jdbcType=VARCHAR},
-           UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
-           CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-           UPDATE_DATETIME = current_timestamp,
-           CREATE_DATETIME = current_timestamp,
+            ID = #{id,jdbcType=VARCHAR},
+            DICT_NAME = #{dictName,jdbcType=VARCHAR},
+            DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+            THE_DESC = #{theDesc,jdbcType=VARCHAR},
+            IS_SYS = #{isSys,jdbcType=VARCHAR},
+            STATUS = #{status,jdbcType=VARCHAR},
+            UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            UPDATE_DATETIME = current_timestamp,
+            CREATE_DATETIME = current_timestamp,
         </set>
         <where>
             id = #{id, jdbcType = VARCHAR}
         </where>
     </update>
 
-    <select id="retrieveAll"  resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from  T_DICT_TYPE
+    <select id="retrieveAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_DICT_TYPE
     </select>
 
     <delete id="deleteById">
