@@ -54,10 +54,10 @@ public class CacheDefEntity extends StubConfDTO {
 
 
     /**
-     * column_name    feild_keys
+     * column_name    field_keys
      * remark         缓存的key值;分割为key,为联合field key
      */
-    private String feildKeys;
+    private String fieldKeys;
 
 
     /**
@@ -155,13 +155,13 @@ public class CacheDefEntity extends StubConfDTO {
     }
 
 
-    public String getFeildKeys() {
-        return feildKeys;
+    public String getFieldKeys() {
+        return fieldKeys;
     }
 
 
-    public void setFeildKeys(String feildKeys) {
-        this.feildKeys = feildKeys == null ? null : feildKeys.trim();
+    public void setFieldKeys(String fieldKeys) {
+        this.fieldKeys = fieldKeys == null ? null : fieldKeys.trim();
     }
 
 

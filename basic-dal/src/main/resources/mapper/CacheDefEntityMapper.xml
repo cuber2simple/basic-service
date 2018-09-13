@@ -9,7 +9,7 @@
         <result column="CACHE_REDIS_KEY" jdbcType="VARCHAR" property="cacheRedisKey"/>
         <result column="CACHE_INS_CLASS" jdbcType="VARCHAR" property="cacheInsClass"/>
         <result column="BRIDGE_CLASS" jdbcType="VARCHAR" property="bridgeClass"/>
-        <result column="FEILD_KEYS" jdbcType="VARCHAR" property="feildKeys"/>
+        <result column="FIELD_KEYS" jdbcType="VARCHAR" property="fieldKeys"/>
         <result column="IS_GLOBAL" jdbcType="VARCHAR" property="isGlobal"/>
         <result column="IS_DURABLE" jdbcType="VARCHAR" property="isDurable"/>
         <result column="DURATION_OF_MINUTES" jdbcType="INTEGER" property="durationOfMinutes"/>
@@ -22,25 +22,25 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, CACHE_NAME, APP_NAME, CACHE_ZK_PATH, CACHE_REDIS_KEY, CACHE_INS_CLASS, BRIDGE_CLASS, FEILD_KEYS, 
+        ID, CACHE_NAME, APP_NAME, CACHE_ZK_PATH, CACHE_REDIS_KEY, CACHE_INS_CLASS, BRIDGE_CLASS, FIELD_KEYS, 
         IS_GLOBAL, IS_DURABLE, DURATION_OF_MINUTES, LAST_LOAD_DATETIME, STATUS, UPDATE_USER_ID, CREATE_USER_ID,
         UPDATE_DATETIME, CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.CacheDefEntity">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
-            select nextval('SEQ_APP_DEF')
+            select nextval('SEQ_CACHE_DEF')
         </selectKey>
         insert into T_CACHE_DEF (
         <include refid="Base_Column_List"/>
         )
         values (
         #{id, jdbcType = VARCHAR}, #{cacheName, jdbcType = VARCHAR}, #{appName, jdbcType = VARCHAR},
-        #{cacheZkPath, jdbcType = VARCHAR},
-        #{cacheRedisKey, jdbcType = VARCHAR}, #{cacheInsClass, jdbcType = VARCHAR}, #{bridgeClass, jdbcType = VARCHAR},
-        #{feildKeys, jdbcType = VARCHAR}, #{isGlobal, jdbcType = VARCHAR}, #{isDurable, jdbcType = VARCHAR},
-        #{durationOfMinutes, jdbcType = INTEGER}, current_timestamp, #{status, jdbcType = VARCHAR},
-        #{updateUserId, jdbcType = VARCHAR},
+        #{cacheZkPath, jdbcType = VARCHAR},#{cacheRedisKey, jdbcType = VARCHAR},
+        #{cacheInsClass, jdbcType = VARCHAR}, #{bridgeClass, jdbcType = VARCHAR},
+        #{fieldKeys, jdbcType = VARCHAR}, #{isGlobal, jdbcType = VARCHAR},
+        #{isDurable, jdbcType = VARCHAR},#{durationOfMinutes, jdbcType = INTEGER},
+        current_timestamp, #{status, jdbcType = VARCHAR},#{updateUserId, jdbcType = VARCHAR},
         #{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
         )
     </insert>
@@ -79,8 +79,8 @@
             <if test="bridgeClass != null">
                 and BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR}
             </if>
-            <if test="feildKeys != null">
-                and FEILD_KEYS = #{feildKeys,jdbcType=VARCHAR}
+            <if test="fieldKeys != null">
+                and FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR}
             </if>
             <if test="isGlobal != null">
                 and IS_GLOBAL = #{isGlobal,jdbcType=VARCHAR}
@@ -136,8 +136,8 @@
             <if test="bridgeClass != null">
                 BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR},
             </if>
-            <if test="feildKeys != null">
-                FEILD_KEYS = #{feildKeys,jdbcType=VARCHAR},
+            <if test="fieldKeys != null">
+                FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR},
             </if>
             <if test="isGlobal != null">
                 IS_GLOBAL = #{isGlobal,jdbcType=VARCHAR},
@@ -176,7 +176,7 @@
             CACHE_REDIS_KEY = #{cacheRedisKey,jdbcType=VARCHAR},
             CACHE_INS_CLASS = #{cacheInsClass,jdbcType=VARCHAR},
             BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR},
-            FEILD_KEYS = #{feildKeys,jdbcType=VARCHAR},
+            FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR},
             IS_GLOBAL = #{isGlobal,jdbcType=VARCHAR},
             IS_DURABLE = #{isDurable,jdbcType=VARCHAR},
             DURATION_OF_MINUTES = #{durationOfMinutes,jdbcType=INTEGER},
