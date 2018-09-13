@@ -1,6 +1,5 @@
 package org.cuber.basic.dto;
 
-import org.cuber.stub.json.GsonHolder;
 import org.cuber.stub.repo.StubConfDTO;
 
 import java.time.LocalDateTime;
@@ -45,6 +44,20 @@ public class CacheDefEntity extends StubConfDTO {
      * remark         缓存的class类名
      */
     private String cacheInsClass;
+
+
+    /**
+     * column_name    bridge_class
+     * remark         缓存的bridge类名
+     */
+    private String bridgeClass;
+
+
+    /**
+     * column_name    feild_keys
+     * remark         缓存的key值;分割为key,为联合field key
+     */
+    private String feildKeys;
 
 
     /**
@@ -132,6 +145,26 @@ public class CacheDefEntity extends StubConfDTO {
     }
 
 
+    public String getBridgeClass() {
+        return bridgeClass;
+    }
+
+
+    public void setBridgeClass(String bridgeClass) {
+        this.bridgeClass = bridgeClass == null ? null : bridgeClass.trim();
+    }
+
+
+    public String getFeildKeys() {
+        return feildKeys;
+    }
+
+
+    public void setFeildKeys(String feildKeys) {
+        this.feildKeys = feildKeys == null ? null : feildKeys.trim();
+    }
+
+
     public String getIsGlobal() {
         return isGlobal;
     }
@@ -181,8 +214,5 @@ public class CacheDefEntity extends StubConfDTO {
         this.updateDatetime = updateDatetime;
     }
 
-    @Override
-    public String toString() {
-        return GsonHolder.toJson(this);
-    }
+
 }

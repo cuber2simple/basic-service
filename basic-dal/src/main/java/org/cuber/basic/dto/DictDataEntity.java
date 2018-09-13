@@ -1,104 +1,103 @@
 package org.cuber.basic.dto;
 
-import org.cuber.stub.json.GsonHolder;
 import org.cuber.stub.repo.StubConfDTO;
 
 import java.time.LocalDateTime;
 
 /**
  * tableName   t_dict_data
- * remark      字典数据表
+ * remark
  */
 public class DictDataEntity extends StubConfDTO {
 
 
     /**
      * column_name    dict_code
-     * remark         字典编码
+     * remark
      */
     private String dictCode;
 
 
     /**
      * column_name    parent_code
-     * remark         父节点编码
+     * remark
      */
     private String parentCode;
 
 
     /**
      * column_name    tree_sort
-     * remark         树排序
+     * remark
      */
     private Short treeSort;
 
 
     /**
      * column_name    tree_leaf
-     * remark         是否叶子节点  Y/N
+     * remark
      */
     private String treeLeaf;
 
 
     /**
      * column_name    tree_level
-     * remark         叶子深度
+     * remark
      */
     private Short treeLevel;
 
 
     /**
      * column_name    dict_label
-     * remark         字典标志
+     * remark
      */
     private String dictLabel;
 
 
     /**
      * column_name    dict_value
-     * remark         字典值
+     * remark
      */
     private String dictValue;
 
 
     /**
-     * column_name    dict_type
-     * remark         字典类型
+     * column_name    dict_name
+     * remark
      */
-    private String dictType;
+    private String dictName;
 
 
     /**
      * column_name    dict_tag
-     * remark         字典标识
+     * remark
      */
     private String dictTag;
 
 
     /**
      * column_name    is_sys
-     * remark         是否系统使用 Y/N
+     * remark
      */
     private String isSys;
 
 
     /**
      * column_name    is_default
-     * remark         是否默认选中 Y/N
+     * remark
      */
     private String isDefault;
 
 
     /**
      * column_name    the_desc
-     * remark         描述
+     * remark
      */
     private String theDesc;
 
 
     /**
      * column_name    update_datetime
-     * remark         更新时间
+     * remark
      */
     private LocalDateTime updateDatetime;
 
@@ -173,13 +172,13 @@ public class DictDataEntity extends StubConfDTO {
     }
 
 
-    public String getDictType() {
-        return dictType;
+    public String getDictName() {
+        return dictName;
     }
 
 
-    public void setDictType(String dictType) {
-        this.dictType = dictType == null ? null : dictType.trim();
+    public void setDictName(String dictName) {
+        this.dictName = dictName == null ? null : dictName.trim();
     }
 
 
@@ -232,8 +231,5 @@ public class DictDataEntity extends StubConfDTO {
         this.updateDatetime = updateDatetime;
     }
 
-    @Override
-    public String toString() {
-        return GsonHolder.toJson(this);
-    }
+
 }

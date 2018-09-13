@@ -49,6 +49,8 @@ CREATE TABLE t_cache_def
 	cache_zk_path         VARCHAR(512),
 	cache_redis_key       VARCHAR(512),
 	cache_ins_class       VARCHAR(1024),
+	bridge_class          VARCHAR(1024),
+	feild_keys            VARCHAR(1024),
 	is_global             VARCHAR(2),
 	is_durable            VARCHAR(2),
   duration_of_minutes   INT,
@@ -75,6 +77,8 @@ comment on column t_cache_def.app_name 			          is '所在服务名';
 comment on column t_cache_def.cache_zk_path 			    is '缓存在的zookeeper path 用于更新全局缓存,比如说国家之类的通知监听地址,不是全局可置为空';
 comment on column t_cache_def.cache_redis_key 			  is '缓存在的redis_key';
 comment on column t_cache_def.cache_ins_class 			  is '缓存的class类名';
+comment on column t_cache_def.bridge_class 			      is '缓存的bridge类名';
+comment on column t_cache_def.feild_keys 			        is '缓存的key值;分割为key,为联合field key';
 comment on column t_cache_def.is_global 			        is '是否全局缓存  Y/N';
 comment on column t_cache_def.is_durable 			        is '是否长期缓存  Y/N  长期缓存不需要过期时间';
 comment on column t_cache_def.duration_of_minutes 		is '过期分钟';
@@ -216,7 +220,7 @@ CREATE TABLE t_dict_data
 	tree_level                SMALLINT NOT NULL,
 	dict_label                VARCHAR(128) NOT NULL,
 	dict_value                VARCHAR(128) NOT NULL,
-	dict_type                 VARCHAR(128) NOT NULL,
+	dict_name                 VARCHAR(128) NOT NULL,
 	dict_tag                  VARCHAR(256) NOT NULL,
 	is_sys                    VARCHAR(2) NOT NULL,
 	is_default                VARCHAR(2) NOT NULL,
@@ -229,6 +233,8 @@ CREATE TABLE t_dict_data
 );
 
 create sequence SEQ_DICT_DATA increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE INDEX I_PARENT_CODE ON t_biz_table_def (parent_code);
+CREATE INDEX I_DICT_NAME ON t_biz_table_def (dict_name);
 
 comment on table  t_dict_data 					                is '字典数据表';
 comment on column t_dict_data.dict_code 				        is '字典编码';
@@ -238,7 +244,7 @@ comment on column t_dict_data.tree_leaf 			          is '是否叶子节点  Y/N
 comment on column t_dict_data.tree_level 			          is '叶子深度';
 comment on column t_dict_data.dict_label 				        is '字典标志';
 comment on column t_dict_data.dict_value 			          is '字典值';
-comment on column t_dict_data.dict_type 			          is '字典类型';
+comment on column t_dict_data.dict_name 			          is '字典名';
 comment on column t_dict_data.dict_tag 			            is '字典标识';
 comment on column t_dict_data.is_sys 				            is '是否系统使用 Y/N';
 comment on column t_dict_data.is_default 				        is '是否默认选中 Y/N';

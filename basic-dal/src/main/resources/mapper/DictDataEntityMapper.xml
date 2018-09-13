@@ -9,7 +9,7 @@
         <result column="TREE_LEVEL" jdbcType="SMALLINT" property="treeLevel"/>
         <result column="DICT_LABEL" jdbcType="VARCHAR" property="dictLabel"/>
         <result column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue"/>
-        <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType"/>
+        <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName"/>
         <result column="DICT_TAG" jdbcType="VARCHAR" property="dictTag"/>
         <result column="IS_SYS" jdbcType="VARCHAR" property="isSys"/>
         <result column="IS_DEFAULT" jdbcType="VARCHAR" property="isDefault"/>
@@ -22,7 +22,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        DICT_CODE, PARENT_CODE, TREE_SORT, TREE_LEAF, TREE_LEVEL, DICT_LABEL, DICT_VALUE, DICT_TYPE, DICT_TAG, 
+        DICT_CODE, PARENT_CODE, TREE_SORT, TREE_LEAF, TREE_LEVEL, DICT_LABEL, DICT_VALUE, DICT_NAME, DICT_TAG, 
         IS_SYS, IS_DEFAULT, THE_DESC, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
     </sql>
 
@@ -33,7 +33,7 @@
         values (
         #{dictCode, jdbcType = VARCHAR}, #{parentCode, jdbcType = VARCHAR}, #{treeSort, jdbcType = SMALLINT},
         #{treeLeaf, jdbcType = VARCHAR}, #{treeLevel, jdbcType = SMALLINT}, #{dictLabel, jdbcType = VARCHAR},
-        #{dictValue, jdbcType = VARCHAR}, #{dictType, jdbcType = VARCHAR}, #{dictTag, jdbcType = VARCHAR},
+        #{dictValue, jdbcType = VARCHAR}, #{dictName, jdbcType = VARCHAR}, #{dictTag, jdbcType = VARCHAR},
         #{isSys, jdbcType = VARCHAR}, #{isDefault, jdbcType = VARCHAR}, #{theDesc, jdbcType = VARCHAR},
         #{status, jdbcType = VARCHAR},#{updateUserId, jdbcType = VARCHAR}, #{createUserId, jdbcType = VARCHAR},
         current_timestamp, current_timestamp
@@ -74,8 +74,8 @@
             <if test="dictValue != null">
                 and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
             </if>
-            <if test="dictType != null">
-                and DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+            <if test="dictName != null">
+                and DICT_NAME = #{dictName,jdbcType=VARCHAR}
             </if>
             <if test="dictTag != null">
                 and DICT_TAG = #{dictTag,jdbcType=VARCHAR}
@@ -131,8 +131,8 @@
             <if test="dictValue != null">
                 DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
             </if>
-            <if test="dictType != null">
-                DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+            <if test="dictName != null">
+                DICT_NAME = #{dictName,jdbcType=VARCHAR},
             </if>
             <if test="dictTag != null">
                 DICT_TAG = #{dictTag,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
             TREE_LEVEL = #{treeLevel,jdbcType=SMALLINT},
             DICT_LABEL = #{dictLabel,jdbcType=VARCHAR},
             DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
-            DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+            DICT_NAME = #{dictName,jdbcType=VARCHAR},
             DICT_TAG = #{dictTag,jdbcType=VARCHAR},
             IS_SYS = #{isSys,jdbcType=VARCHAR},
             IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
