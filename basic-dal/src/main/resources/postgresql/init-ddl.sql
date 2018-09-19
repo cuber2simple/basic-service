@@ -50,6 +50,7 @@ CREATE TABLE t_cache_def
 	cache_redis_key       VARCHAR(512),
 	cache_ins_class       VARCHAR(1024),
 	bridge_class          VARCHAR(1024),
+	carrier_class         VARCHAR(1024),
 	field_keys            VARCHAR(1024),
 	is_global             VARCHAR(2),
 	is_durable            VARCHAR(2),
@@ -78,6 +79,7 @@ comment on column t_cache_def.cache_zk_path 			    is '缓存在的zookeeper pat
 comment on column t_cache_def.cache_redis_key 			  is '缓存在的redis_key';
 comment on column t_cache_def.cache_ins_class 			  is '缓存的class类名';
 comment on column t_cache_def.bridge_class 			      is '缓存的bridge类名';
+comment on column t_cache_def.carrier_class 			    is 'carrier类';
 comment on column t_cache_def.field_keys 			        is '缓存的key值;分割为key,为联合field key';
 comment on column t_cache_def.is_global 			        is '是否全局缓存  Y/N';
 comment on column t_cache_def.is_durable 			        is '是否长期缓存  Y/N  长期缓存不需要过期时间';
