@@ -231,6 +231,7 @@
             <if test="alphaCode2 == null and  alphaCode3 == null and numberCode == null">
                 1 != 1
             </if>
+            and status = '1'
         </where>
     </select>
 </mapper>

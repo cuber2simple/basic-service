@@ -192,6 +192,7 @@
             <if test="tableName == null">
                 1 != 1
             </if>
+            and status = '1'
         </where>
     </select>
 
@@ -201,5 +202,6 @@
         from T_BIZ_TABLE_DEF
         where
           APP_NAME = #{appName,jdbcType=VARCHAR}
+        and status = '1'
     </select>
 </mapper>

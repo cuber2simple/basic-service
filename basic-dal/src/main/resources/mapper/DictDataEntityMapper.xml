@@ -200,4 +200,13 @@
         where
         dict_code = #{dictCode, jdbcType = VARCHAR}
     </delete>
+
+    <select id="retrieveByDictName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_DICT_DATA
+        where
+        DICT_NAME = #{dictName,jdbcType=VARCHAR}
+        and status = '1'
+    </select>
 </mapper>

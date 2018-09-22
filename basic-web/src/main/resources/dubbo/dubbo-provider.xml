@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ /**
-  ~  * 启赟金融信息服务（上海）有限公司
-  ~  * Copyright (c) 2015-2017 iPayLinks.All Rights Reserved.
-  ~  */
-  ~
-  -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
@@ -39,6 +32,9 @@
                    version="${dubbo.basic.version}"/>
 
     <dubbo:service interface="org.cuber.basic.facade.bridge.DictionaryBridge" ref="dictionaryBizService"
+                   version="${dubbo.basic.version}"/>
+
+    <dubbo:service interface="org.cuber.basic.facade.rmi.IpFacade" ref="ipFacade"
                    version="${dubbo.basic.version}"/>
 
 </beans>

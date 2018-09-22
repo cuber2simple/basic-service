@@ -50,16 +50,9 @@
     <dependencies>
         <dependency>
             <groupId>org.cuber</groupId>
-            <artifactId>stub-base</artifactId>
-            <version>${stub.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.cuber</groupId>
             <artifactId>stub-starter</artifactId>
             <version>${stub.version}</version>
         </dependency>
-
     </dependencies>
     <build>
         <pluginManagement>

@@ -216,9 +216,10 @@
         <include refid="Base_Column_List"/>
         from T_CACHE_DEF
         where
-        APP_NAME = #{appName,jdbcType=VARCHAR}
+        (APP_NAME = #{appName,jdbcType=VARCHAR}
         OR
-        IS_GLOBAL = 'Y'
+        IS_GLOBAL = 'Y')
+        and status = '1'
     </select>
 
     <select id="retrieveByUnique" resultMap="BaseResultMap">
@@ -238,6 +239,7 @@
             <if test="cacheName == null and  cacheRedisKey == null and cacheZkPath == null">
                 1 != 1
             </if>
+            and status = '1'
         </where>
     </select>
 </mapper>

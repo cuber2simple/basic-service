@@ -145,4 +145,13 @@
         where
         id = #{id, jdbcType = VARCHAR}
     </delete>
+
+    <select id="retrieveByDictName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_DICT_TYPE
+        where
+        DICT_NAME = #{dictName,jdbcType=VARCHAR}
+        and status = '1'
+    </select>
 </mapper>

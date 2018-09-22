@@ -200,6 +200,8 @@
         <include refid="Base_Column_List"/>
         from T_APP_DEF
         where
-        APP_NAME = #{appName,jdbcType=VARCHAR}
+          APP_NAME = #{appName,jdbcType=VARCHAR}
+        and
+          status = '1'
     </select>
 </mapper>

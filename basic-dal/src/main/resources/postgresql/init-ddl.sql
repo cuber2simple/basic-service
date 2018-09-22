@@ -273,6 +273,8 @@ CREATE TABLE t_dict_type
 
 create sequence SEQ_DICT_TYPE_ID increment by 1 minvalue 1 no maxvalue start with 1;
 
+CREATE UNIQUE INDEX I_DICT_NAME ON t_dict_type (dict_name);
+
 comment on table  t_dict_type 					                is '字典类型表';
 comment on column t_dict_type.id 				                is '字典编码';
 comment on column t_dict_type.dict_name 			          is '字典名称';
