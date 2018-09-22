@@ -187,4 +187,22 @@
         where
         id = #{id, jdbcType = VARCHAR}
     </delete>
+
+    <select id="retrieveByUnique" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CURRENCY_4217
+        <where>
+            <if test="alphaCode != null">
+                ALPHA_CODE = #{alphaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="numberCode != null">
+                NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="alphaCode == null and numberCode == null">
+                1 != 1
+            </if>
+        </where>
+    </select>
+
 </mapper>

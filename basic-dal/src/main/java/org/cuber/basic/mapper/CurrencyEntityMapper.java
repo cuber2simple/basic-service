@@ -5,4 +5,5 @@ import org.cuber.stub.repo.Mapper;
 
 public interface CurrencyEntityMapper extends Mapper<CurrencyEntity, String> {
 
+    CurrencyEntity retrieveByUnique(CurrencyEntity search);
 }

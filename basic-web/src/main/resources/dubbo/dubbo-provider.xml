@@ -32,4 +32,13 @@
     <dubbo:service interface="org.cuber.basic.facade.bridge.BizTableDefBridge" ref="bizTableDefBizService"
                    version="${dubbo.basic.version}"/>
 
+    <dubbo:service interface="org.cuber.basic.facade.bridge.CurrencyBridge" ref="currencyBizService"
+                   version="${dubbo.basic.version}"/>
+
+    <dubbo:service interface="org.cuber.basic.facade.bridge.CountryBridge" ref="countryBizService"
+                   version="${dubbo.basic.version}"/>
+
+    <dubbo:service interface="org.cuber.basic.facade.bridge.DictionaryBridge" ref="dictionaryBizService"
+                   version="${dubbo.basic.version}"/>
+
 </beans>
