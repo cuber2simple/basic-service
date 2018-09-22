@@ -9,6 +9,7 @@
         <result column="CACHE_REDIS_KEY" jdbcType="VARCHAR" property="cacheRedisKey"/>
         <result column="CACHE_INS_CLASS" jdbcType="VARCHAR" property="cacheInsClass"/>
         <result column="BRIDGE_CLASS" jdbcType="VARCHAR" property="bridgeClass"/>
+        <result column="CARRIER_CLASS" jdbcType="VARCHAR" property="carrierClass"/>
         <result column="FIELD_KEYS" jdbcType="VARCHAR" property="fieldKeys"/>
         <result column="IS_GLOBAL" jdbcType="VARCHAR" property="isGlobal"/>
         <result column="IS_DURABLE" jdbcType="VARCHAR" property="isDurable"/>
@@ -22,9 +23,9 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, CACHE_NAME, APP_NAME, CACHE_ZK_PATH, CACHE_REDIS_KEY, CACHE_INS_CLASS, BRIDGE_CLASS, FIELD_KEYS, 
-        IS_GLOBAL, IS_DURABLE, DURATION_OF_MINUTES, LAST_LOAD_DATETIME, STATUS, UPDATE_USER_ID, CREATE_USER_ID,
-        UPDATE_DATETIME, CREATE_DATETIME
+        ID, CACHE_NAME, APP_NAME, CACHE_ZK_PATH, CACHE_REDIS_KEY, CACHE_INS_CLASS, BRIDGE_CLASS, CARRIER_CLASS, 
+        FIELD_KEYS, IS_GLOBAL, IS_DURABLE, DURATION_OF_MINUTES, LAST_LOAD_DATETIME, STATUS, UPDATE_USER_ID,
+        CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
     </sql>
 
     <insert id="create" parameterType="org.cuber.basic.dto.CacheDefEntity">
@@ -36,12 +37,11 @@
         )
         values (
         #{id, jdbcType = VARCHAR}, #{cacheName, jdbcType = VARCHAR}, #{appName, jdbcType = VARCHAR},
-        #{cacheZkPath, jdbcType = VARCHAR},#{cacheRedisKey, jdbcType = VARCHAR},
-        #{cacheInsClass, jdbcType = VARCHAR}, #{bridgeClass, jdbcType = VARCHAR},
-        #{fieldKeys, jdbcType = VARCHAR}, #{isGlobal, jdbcType = VARCHAR},
-        #{isDurable, jdbcType = VARCHAR},#{durationOfMinutes, jdbcType = INTEGER},
-        current_timestamp, #{status, jdbcType = VARCHAR},#{updateUserId, jdbcType = VARCHAR},
-        #{createUserId, jdbcType = VARCHAR}, current_timestamp, current_timestamp
+        #{cacheZkPath, jdbcType = VARCHAR},#{cacheRedisKey, jdbcType = VARCHAR}, #{cacheInsClass, jdbcType = VARCHAR},
+        #{bridgeClass, jdbcType = VARCHAR},#{carrierClass, jdbcType = VARCHAR}, #{fieldKeys, jdbcType = VARCHAR},
+        #{isGlobal, jdbcType = VARCHAR},#{isDurable, jdbcType = VARCHAR}, #{durationOfMinutes, jdbcType = INTEGER},
+        current_timestamp,#{status, jdbcType = VARCHAR},#{updateUserId, jdbcType = VARCHAR},
+        #{createUserId, jdbcType = VARCHAR},current_timestamp, current_timestamp
         )
     </insert>
 
@@ -78,6 +78,9 @@
             </if>
             <if test="bridgeClass != null">
                 and BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR}
+            </if>
+            <if test="carrierClass != null">
+                and CARRIER_CLASS = #{carrierClass,jdbcType=VARCHAR}
             </if>
             <if test="fieldKeys != null">
                 and FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR}
@@ -136,6 +139,9 @@
             <if test="bridgeClass != null">
                 BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR},
             </if>
+            <if test="carrierClass != null">
+                CARRIER_CLASS = #{carrierClass,jdbcType=VARCHAR},
+            </if>
             <if test="fieldKeys != null">
                 FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR},
             </if>
@@ -176,6 +182,7 @@
             CACHE_REDIS_KEY = #{cacheRedisKey,jdbcType=VARCHAR},
             CACHE_INS_CLASS = #{cacheInsClass,jdbcType=VARCHAR},
             BRIDGE_CLASS = #{bridgeClass,jdbcType=VARCHAR},
+            CARRIER_CLASS = #{carrierClass,jdbcType=VARCHAR},
             FIELD_KEYS = #{fieldKeys,jdbcType=VARCHAR},
             IS_GLOBAL = #{isGlobal,jdbcType=VARCHAR},
             IS_DURABLE = #{isDurable,jdbcType=VARCHAR},
@@ -203,4 +210,34 @@
         where
         id = #{id, jdbcType = VARCHAR}
     </delete>
+
+    <select id="retrieveByAppNameOrGlobal" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CACHE_DEF
+        where
+        APP_NAME = #{appName,jdbcType=VARCHAR}
+        OR
+        IS_GLOBAL = 'Y'
+    </select>
+
+    <select id="retrieveByUnique" resultMap="BaseResultMap">
+        select
+          <include refid="Base_Column_List"/>
+        from T_CACHE_DEF
+        <where>
+            <if test="cacheZkPath != null">
+                CACHE_ZK_PATH = #{cacheZkPath,jdbcType=VARCHAR},
+            </if>
+            <if test="cacheRedisKey != null">
+                CACHE_REDIS_KEY = #{cacheRedisKey,jdbcType=VARCHAR},
+            </if>
+            <if test="cacheName != null">
+                CACHE_NAME = #{cacheName,jdbcType=VARCHAR},
+            </if>
+            <if test="cacheName == null and  cacheRedisKey == null and cacheZkPath == null">
+                1 != 1
+            </if>
+        </where>
+    </select>
 </mapper>

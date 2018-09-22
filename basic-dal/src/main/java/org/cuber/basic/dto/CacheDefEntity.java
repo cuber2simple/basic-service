@@ -54,6 +54,13 @@ public class CacheDefEntity extends StubConfDTO {
 
 
     /**
+     * column_name    carrier_class
+     * remark         carrier类
+     */
+    private String carrierClass;
+
+
+    /**
      * column_name    field_keys
      * remark         缓存的key值;分割为key,为联合field key
      */
@@ -152,6 +159,16 @@ public class CacheDefEntity extends StubConfDTO {
 
     public void setBridgeClass(String bridgeClass) {
         this.bridgeClass = bridgeClass == null ? null : bridgeClass.trim();
+    }
+
+
+    public String getCarrierClass() {
+        return carrierClass;
+    }
+
+
+    public void setCarrierClass(String carrierClass) {
+        this.carrierClass = carrierClass == null ? null : carrierClass.trim();
     }
 
 

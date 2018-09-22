@@ -180,4 +180,26 @@
         where
         id = #{id, jdbcType = VARCHAR}
     </delete>
+
+    <select id="retrieveByUnique" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_BIZ_TABLE_DEF
+        <where>
+            <if test="tableName != null">
+                TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName == null">
+                1 != 1
+            </if>
+        </where>
+    </select>
+
+    <select id="retrieveByAppName" resultMap="BaseResultMap">
+        select
+          <include refid="Base_Column_List"/>
+        from T_BIZ_TABLE_DEF
+        where
+          APP_NAME = #{appName,jdbcType=VARCHAR}
+    </select>
 </mapper>
