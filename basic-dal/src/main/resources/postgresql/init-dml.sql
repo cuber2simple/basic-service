@@ -78,6 +78,11 @@ context_path,app_desc,status,update_user_id,create_user_id,update_datetime,creat
 'cas-center','manager server','1','8095','20015',null,null,'/cass','清结算中心','1','1','1',current_timestamp,
 current_timestamp);
 
+INSERT INTO t_app_def(id,app_name,group_name,own_user_id,server_port,dubbo_port,ext_setting,ext1_setting,
+context_path,app_desc,status,update_user_id,create_user_id,update_datetime,create_datetime) values(nextval('SEQ_APP_DEF'),
+'common','common setting','1','8096','20016',null,null,'/common','基础设置,数据库连接池,redis,kafka等一般设置','1','1','1',current_timestamp,
+current_timestamp);
+
 
 INSERT INTO t_cache_def(id,cache_name,app_name,cache_zk_path,cache_redis_key,cache_ins_class,bridge_class,carrier_class,field_keys,
 is_global,is_durable,duration_of_minutes,last_load_datetime,status,update_user_id,create_user_id,update_datetime,
