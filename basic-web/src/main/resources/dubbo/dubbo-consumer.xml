@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <dubbo:provider filter="loggerInvokerFilter"/>
+
 
     <!--<dubbo:reference id="encryptFacade" interface="com.ipaylinks.fip.eds.facade.EncryptFacade"-->
     <!--retries='${dubbo.common.retry}' timeout="${dubbo.common.timeout}" version="${dubbo.eds.version}"-->

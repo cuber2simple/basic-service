@@ -24,3 +24,9 @@ server:
   port: 8081
   servlet:
     context-path: /basic
+dubbo:
+  port: 20001
+  basic:
+    version: 1.0
+kafka:
+  topic: basic-service
