@@ -220,16 +220,16 @@
         from T_COUNTRY_3166
         <where>
             <if test="alphaCode2 != null">
-                ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR},
+                AND    ALPHA_CODE_2 = #{alphaCode2,jdbcType=VARCHAR}
             </if>
             <if test="alphaCode3 != null">
-                ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR},
+                AND    ALPHA_CODE_3 = #{alphaCode3,jdbcType=VARCHAR}
             </if>
             <if test="numberCode != null">
-                NUMBER_CODE = #{numberCode,jdbcType=VARCHAR},
+                AND    NUMBER_CODE = #{numberCode,jdbcType=VARCHAR}
             </if>
             <if test="alphaCode2 == null and  alphaCode3 == null and numberCode == null">
-                1 != 1
+                AND    1 != 1
             </if>
             and status = '1'
         </where>

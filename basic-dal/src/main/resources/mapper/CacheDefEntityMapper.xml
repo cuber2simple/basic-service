@@ -228,16 +228,16 @@
         from T_CACHE_DEF
         <where>
             <if test="cacheZkPath != null">
-                CACHE_ZK_PATH = #{cacheZkPath,jdbcType=VARCHAR},
+            AND    CACHE_ZK_PATH = #{cacheZkPath,jdbcType=VARCHAR}
             </if>
             <if test="cacheRedisKey != null">
-                CACHE_REDIS_KEY = #{cacheRedisKey,jdbcType=VARCHAR},
+            AND    CACHE_REDIS_KEY = #{cacheRedisKey,jdbcType=VARCHAR}
             </if>
             <if test="cacheName != null">
-                CACHE_NAME = #{cacheName,jdbcType=VARCHAR},
+            AND    CACHE_NAME = #{cacheName,jdbcType=VARCHAR}
             </if>
             <if test="cacheName == null and  cacheRedisKey == null and cacheZkPath == null">
-                1 != 1
+            AND    1 != 1
             </if>
             and status = '1'
         </where>
