@@ -21,7 +21,7 @@ public class CacheBizService implements CacheDefBridge {
     @Override
     public Resp<List<CacheDef>> loadCacheByAppName(Req<String> req) throws StubException {
         RpcUtils.verifyVoNotNull(req);
-        String appName = req.getAppName();
+        String appName = req.getReq();
         List<CacheDef> cacheDefs = cacheDefCarrier.loadCacheByAppName(appName);
         return RpcUtils.success(cacheDefs);
     }

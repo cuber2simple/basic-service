@@ -25,10 +25,10 @@ public class DictionaryCarrierImpl implements DictionaryCarrier {
     @Autowired
     private CacheDefCarrier cacheDefCarrier;
 
-    @Autowired
+    @Autowired(required = false)
     private DictDataEntityMapper dictDataEntityMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private DictTypeEntityMapper dictTypeEntityMapper;
 
     @Override

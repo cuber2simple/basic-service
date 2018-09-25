@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 public class CacheDefCarrierImpl implements CacheDefCarrier {
 
     public static final String CACHE_DEF_CACHE_NAME = "cache_def";
-    @Autowired
+
+    @Autowired(required = false)
     private CacheDefEntityMapper cacheDefEntityMapper;
 
     @Override

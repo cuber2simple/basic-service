@@ -19,7 +19,7 @@ public class BizTableDefCarrierImpl implements BizTableDefCarrier {
 
     public static final String BIZ_TABLE_DEF_CACHE_NAME = "biz_table_def";
 
-    @Autowired
+    @Autowired(required = false)
     private BizTableDefEntityMapper bizTableDefEntityMapper;
 
     @Autowired

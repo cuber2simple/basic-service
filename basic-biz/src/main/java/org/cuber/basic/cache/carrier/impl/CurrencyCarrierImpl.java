@@ -8,7 +8,9 @@ import org.cuber.stub.basic.CacheDef;
 import org.cuber.stub.basic.Currency;
 import org.cuber.stub.util.TransUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CurrencyCarrierImpl implements CurrencyCarrier {
 
     public static final String CURRENCY_CACHE_NAME = "currency";

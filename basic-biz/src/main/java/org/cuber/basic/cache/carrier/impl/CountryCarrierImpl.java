@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CountryCarrierImpl implements CountryCarrier {
 
-    @Autowired
+    @Autowired(required = false)
     private CountryEntityMapper countryEntityMapper;
 
     public static final String COUNTRY_CACHE_NAME = "country";

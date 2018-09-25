@@ -15,7 +15,7 @@ public class AppDefCarrierImpl implements AppDefCarrier {
 
     public static final String APP_DEF_CACHE_NAME = "app_def";
 
-    @Autowired
+    @Autowired(required = false)
     private AppDefEntityMapper appDefEntityMapper;
 
     @Autowired
