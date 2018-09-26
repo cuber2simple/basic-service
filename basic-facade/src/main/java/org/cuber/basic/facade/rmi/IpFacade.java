@@ -6,6 +6,5 @@ import org.cuber.stub.rpc.Resp;
 import org.cuber.stub.rpc.StubException;
 
 public interface IpFacade {
-
     Resp<Ip> load(Req<String> req) throws StubException;
 }
