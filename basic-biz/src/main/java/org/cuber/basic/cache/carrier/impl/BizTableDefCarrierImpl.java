@@ -7,7 +7,7 @@ import org.cuber.basic.dto.BizTableDefEntity;
 import org.cuber.basic.mapper.BizTableDefEntityMapper;
 import org.cuber.stub.basic.BizTableDef;
 import org.cuber.stub.basic.CacheDef;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class BizTableDefCarrierImpl implements BizTableDefCarrier {
         List<BizTableDefEntity> entities = bizTableDefEntityMapper.retrieveByAppName(appName);
         if (CollectionUtils.isNotEmpty(entities)) {
             result = entities.stream()
-                    .map(bizTableDefEntity -> TransUtils.copyP(bizTableDefEntity, BizTableDef.class))
+                    .map(bizTableDefEntity -> TransformUtils.copyP(bizTableDefEntity, BizTableDef.class))
                     .collect(Collectors.toList());
         }
         return result;
@@ -40,8 +40,8 @@ public class BizTableDefCarrierImpl implements BizTableDefCarrier {
     @Override
     public BizTableDef carryByKey(BizTableDef bizTableDef) {
         BizTableDefEntity bizTableDefEntity = bizTableDefEntityMapper
-                .retrieveByUnique(TransUtils.copyP(bizTableDef, BizTableDefEntity.class));
-        return TransUtils.copyP(bizTableDefEntity, BizTableDef.class);
+                .retrieveByUnique(TransformUtils.copyP(bizTableDef, BizTableDefEntity.class));
+        return TransformUtils.copyP(bizTableDefEntity, BizTableDef.class);
     }
 
     @Override

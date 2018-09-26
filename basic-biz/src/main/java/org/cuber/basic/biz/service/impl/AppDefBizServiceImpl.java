@@ -7,7 +7,7 @@ import org.cuber.basic.mapper.AppDefEntityMapper;
 import org.cuber.stub.StubConstant;
 import org.cuber.stub.basic.AppDef;
 import org.cuber.stub.initializer.PropertyFactory;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 import org.cuber.zk.XClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +33,7 @@ public class AppDefBizServiceImpl implements AppDefBizService {
         List<AppDef> result = null;
         if (CollectionUtils.isNotEmpty(appDefEntities)) {
             result = appDefEntities.stream()
-                    .map(appDefEntity -> TransUtils.copyP(appDefEntity, AppDef.class))
+                    .map(appDefEntity -> TransformUtils.copyP(appDefEntity, AppDef.class))
                     .collect(Collectors.toList());
         }
         return result;

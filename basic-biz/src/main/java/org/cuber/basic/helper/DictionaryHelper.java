@@ -5,7 +5,7 @@ import org.cuber.basic.dto.DictDataEntity;
 import org.cuber.basic.dto.DictTypeEntity;
 import org.cuber.stub.StubConstant;
 import org.cuber.stub.basic.Dictionary;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ public class DictionaryHelper {
     public static final String NO_PARENT_DICT_CODE = "-1";
 
     public static Dictionary.DictionaryData dto2Vo(DictDataEntity dictDataEntity) {
-        Dictionary.DictionaryData data = TransUtils.copyP(dictDataEntity, Dictionary.DictionaryData.class);
+        Dictionary.DictionaryData data = TransformUtils.copyP(dictDataEntity, Dictionary.DictionaryData.class);
         if (Objects.nonNull(data)) {
             data.setDefaultX(StubConstant.Y_IS_TRUE.equals(dictDataEntity.getIsDefault()));
             data.setTreeLeaf(StubConstant.Y_IS_TRUE.equals(dictDataEntity.getTreeLeaf()));
@@ -24,7 +24,7 @@ public class DictionaryHelper {
     }
 
     public static DictDataEntity vo2Dto(Dictionary.DictionaryData data) {
-        DictDataEntity dictDataEntity = TransUtils.copyP(data, DictDataEntity.class);
+        DictDataEntity dictDataEntity = TransformUtils.copyP(data, DictDataEntity.class);
         if (Objects.nonNull(dictDataEntity)) {
             dictDataEntity.setIsSys(data.isSys() ? StubConstant.Y_IS_TRUE : StubConstant.N_IS_FALSE);
             dictDataEntity.setIsDefault(data.isDefaultX() ? StubConstant.Y_IS_TRUE : StubConstant.N_IS_FALSE);
@@ -35,7 +35,7 @@ public class DictionaryHelper {
 
 
     public static Dictionary dto2Vo(DictTypeEntity dictTypeEntity) {
-        Dictionary dictionary = TransUtils.copyP(dictTypeEntity, Dictionary.class);
+        Dictionary dictionary = TransformUtils.copyP(dictTypeEntity, Dictionary.class);
         if (Objects.nonNull(dictionary)) {
             dictionary.setSys(StubConstant.Y_IS_TRUE.equals(dictTypeEntity.getIsSys()));
         }
@@ -43,7 +43,7 @@ public class DictionaryHelper {
     }
 
     public static DictTypeEntity vo2Dto(Dictionary dictionary) {
-        DictTypeEntity dictTypeEntity = TransUtils.copyP(dictionary, DictTypeEntity.class);
+        DictTypeEntity dictTypeEntity = TransformUtils.copyP(dictionary, DictTypeEntity.class);
         if (Objects.nonNull(dictTypeEntity)) {
             dictTypeEntity.setIsSys(dictionary.isSys() ? StubConstant.Y_IS_TRUE : StubConstant.N_IS_FALSE);
         }

@@ -6,7 +6,7 @@ import org.cuber.basic.dto.CurrencyEntity;
 import org.cuber.basic.mapper.CurrencyEntityMapper;
 import org.cuber.stub.basic.CacheDef;
 import org.cuber.stub.basic.Currency;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class CurrencyCarrierImpl implements CurrencyCarrier {
 
     @Override
     public Currency carryByKey(Currency currency) {
-        CurrencyEntity currencyEntity = TransUtils.copyP(currency, CurrencyEntity.class);
+        CurrencyEntity currencyEntity = TransformUtils.copyP(currency, CurrencyEntity.class);
         CurrencyEntity target = currencyEntityMapper.retrieveByUnique(currencyEntity);
-        return TransUtils.copyP(target, Currency.class);
+        return TransformUtils.copyP(target, Currency.class);
     }
 
     @Override

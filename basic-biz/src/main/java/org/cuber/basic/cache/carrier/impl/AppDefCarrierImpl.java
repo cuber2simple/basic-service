@@ -6,7 +6,7 @@ import org.cuber.basic.dto.AppDefEntity;
 import org.cuber.basic.mapper.AppDefEntityMapper;
 import org.cuber.stub.basic.AppDef;
 import org.cuber.stub.basic.CacheDef;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class AppDefCarrierImpl implements AppDefCarrier {
     @Override
     public AppDef loadByAppName(String appName) {
         AppDefEntity appDefEntity = appDefEntityMapper.retrieveByAppName(appName);
-        return TransUtils.copyP(appDefEntity, AppDef.class);
+        return TransformUtils.copyP(appDefEntity, AppDef.class);
     }
 
     @Override

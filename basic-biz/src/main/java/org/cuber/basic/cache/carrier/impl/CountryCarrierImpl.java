@@ -6,7 +6,7 @@ import org.cuber.basic.dto.CountryEntity;
 import org.cuber.basic.mapper.CountryEntityMapper;
 import org.cuber.stub.basic.CacheDef;
 import org.cuber.stub.basic.Country;
-import org.cuber.stub.util.TransUtils;
+import org.cuber.stub.util.TransformUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class CountryCarrierImpl implements CountryCarrier {
 
     @Override
     public Country carryByKey(Country country) {
-        CountryEntity search = TransUtils.copyP(country, CountryEntity.class);
+        CountryEntity search = TransformUtils.copyP(country, CountryEntity.class);
         CountryEntity target = countryEntityMapper.retrieveByUnique(search);
-        return TransUtils.copyP(target, Country.class);
+        return TransformUtils.copyP(target, Country.class);
     }
 
     @Override
