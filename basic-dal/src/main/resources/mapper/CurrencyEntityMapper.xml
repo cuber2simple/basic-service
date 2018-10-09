@@ -9,6 +9,8 @@
         <result column="SYMBOL_CURRENCY" jdbcType="VARCHAR" property="symbolCurrency"/>
         <result column="I18N_KEY" jdbcType="VARCHAR" property="i18nKey"/>
         <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="LOCALE_NAME" jdbcType="VARCHAR" property="localeName"/>
+        <result column="ZH_NAME" jdbcType="VARCHAR" property="zhName"/>
         <result column="COUNTRY" jdbcType="VARCHAR" property="country"/>
         <result column="GRANT_4_SALE" jdbcType="VARCHAR" property="grant4Sale"/>
         <result column="GRANT_4_SETTLE" jdbcType="VARCHAR" property="grant4Settle"/>
@@ -20,7 +22,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, ALPHA_CODE, NUMBER_CODE, MINOR_UNIT, SYMBOL_CURRENCY, I18N_KEY, NAME, COUNTRY, GRANT_4_SALE, 
+        ID, ALPHA_CODE, NUMBER_CODE, MINOR_UNIT, SYMBOL_CURRENCY, I18N_KEY, NAME, LOCALE_NAME, ZH_NAME, COUNTRY, GRANT_4_SALE,
         GRANT_4_SETTLE, STATUS, UPDATE_USER_ID, CREATE_USER_ID, UPDATE_DATETIME, CREATE_DATETIME
     </sql>
 
@@ -34,8 +36,8 @@
         values (
         #{id, jdbcType = VARCHAR}, #{alphaCode, jdbcType = VARCHAR}, #{numberCode, jdbcType = VARCHAR},
         #{minorUnit, jdbcType = SMALLINT},#{symbolCurrency, jdbcType = VARCHAR},
-        #{i18nKey, jdbcType = VARCHAR}, #{name, jdbcType = VARCHAR},#{country, jdbcType = VARCHAR},
-        #{grant4Sale, jdbcType = VARCHAR}, #{grant4Settle, jdbcType = VARCHAR},
+        #{i18nKey, jdbcType = VARCHAR}, #{name, jdbcType = VARCHAR}, #{localeName, jdbcType = VARCHAR}, #{zhName, jdbcType = VARCHAR},
+        #{country, jdbcType = VARCHAR}, #{grant4Sale, jdbcType = VARCHAR}, #{grant4Settle, jdbcType = VARCHAR},
         #{status, jdbcType = VARCHAR}, #{updateUserId, jdbcType = VARCHAR}, #{createUserId, jdbcType = VARCHAR},
         current_timestamp, current_timestamp
         )
@@ -74,6 +76,12 @@
             </if>
             <if test="name != null">
                 and NAME = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="localName != null">
+                and LOCALE_NAME = #{localName,jdbcType=VARCHAR}
+            </if>
+            <if test="zhName != null">
+                and ZH_NAME = #{zhName,jdbcType=VARCHAR}
             </if>
             <if test="country != null">
                 and COUNTRY = #{country,jdbcType=VARCHAR}
@@ -126,6 +134,12 @@
             <if test="name != null">
                 NAME = #{name,jdbcType=VARCHAR},
             </if>
+            <if test="localName != null">
+                LOCALE_NAME = #{localName,jdbcType=VARCHAR},
+            </if>
+            <if test="zhName != null">
+                ZH_NAME = #{zhName,jdbcType=VARCHAR},
+            </if>
             <if test="country != null">
                 COUNTRY = #{country,jdbcType=VARCHAR},
             </if>
@@ -162,6 +176,8 @@
             SYMBOL_CURRENCY = #{symbolCurrency,jdbcType=VARCHAR},
             I18N_KEY = #{i18nKey,jdbcType=VARCHAR},
             NAME = #{name,jdbcType=VARCHAR},
+            LOCALE_NAME = #{localName,jdbcType=VARCHAR},
+            ZH_NAME = #{zhName,jdbcType=VARCHAR},
             COUNTRY = #{country,jdbcType=VARCHAR},
             GRANT_4_SALE = #{grant4Sale,jdbcType=VARCHAR},
             GRANT_4_SETTLE = #{grant4Settle,jdbcType=VARCHAR},

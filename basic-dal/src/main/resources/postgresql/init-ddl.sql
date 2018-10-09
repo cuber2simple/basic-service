@@ -137,9 +137,14 @@ create table t_country_3166
   alpha_code_2              VARCHAR(4) NOT NULL ,
   alpha_code_3              VARCHAR(6) NOT NULL ,
   number_code               VARCHAR(6) NOT NULL ,
-  ISO3166_2                 VARCHAR(32) ,
-  i18n_key                  VARCHAR(256) ,
+  ISO3166_2                 VARCHAR(32),
+  i18n_key                  VARCHAR(256),
   name                      VARCHAR(256),
+  locale_name               VARCHAR(256),
+  zh_name                   VARCHAR(256),
+  current_currency          VARCHAR(6),
+  phone_code                VARCHAR(6),
+  ext_phone_code            VARCHAR(6),
   region                    VARCHAR(256),
   sub_region                VARCHAR(256),
   intermediate_region       VARCHAR(256),
@@ -163,6 +168,11 @@ comment on column t_country_3166.number_code 			          is '国家数字码';
 comment on column t_country_3166.ISO3166_2 			            is '国家3166-2字码';
 comment on column t_country_3166.i18n_key 				          is '国家I18N';
 comment on column t_country_3166.name 			                is '国家英文名';
+comment on column t_country_3166.locale_name 			          is '国家本地名';
+comment on column t_country_3166.zh_name 			              is '国家中文名';
+comment on column t_country_3166.current_currency 			    is '国家通用币种';
+comment on column t_country_3166.phone_code 			          is '国家电话前缀';
+comment on column t_country_3166.ext_phone_code 			      is '国家电话区域前缀';
 comment on column t_country_3166.region 			              is '国家地区';
 comment on column t_country_3166.sub_region 				        is '国家子地区';
 comment on column t_country_3166.intermediate_region 			  is '国家中间地区';
@@ -184,6 +194,8 @@ create table t_currency_4217
   symbol_currency     VARCHAR(6),
   i18n_key            VARCHAR(32),
   name                VARCHAR(128),
+  locale_name         VARCHAR(256),
+  zh_name             VARCHAR(256),
   country             VARCHAR(128),
   grant_4_sale        VARCHAR(2),
   grant_4_settle      VARCHAR(2),
@@ -204,6 +216,8 @@ comment on column t_currency_4217.minor_unit 			          is '币种最小单位
 comment on column t_currency_4217.symbol_currency 			    is '币种符号';
 comment on column t_currency_4217.i18n_key 				          is '币种I18N';
 comment on column t_currency_4217.name 			                is '币种中文名';
+comment on column t_currency_4217.locale_name 			        is '币种当地名';
+comment on column t_currency_4217.zh_name 			            is '币种中文名';
 comment on column t_currency_4217.country 			            is '币种使用实体';
 comment on column t_currency_4217.grant_4_sale 				      is '是否是交易币种Y/N';
 comment on column t_currency_4217.grant_4_settle 			      is '是否是结算币种Y/N';
@@ -286,4 +300,75 @@ comment on column t_dict_type.update_user_id 	          is '更新操作员';
 comment on column t_dict_type.create_user_id 	          is '创建操作员';
 comment on column t_dict_type.update_datetime 	        is '更新时间';
 comment on column t_dict_type.create_datetime 	        is '创建时间';
+
+
+CREATE TABLE t_mcc_def
+(
+	id                        VARCHAR(64) NOT NULL PRIMARY KEY,
+	mcc_code                  VARCHAR(8) NOT NULL,
+	mcc_name                  VARCHAR(1024) NOT NULL,
+	mcc_zh_desc               VARCHAR(1024),
+	is_sys                    VARCHAR(1) NOT NULL,
+  status                    VARCHAR(2),
+  update_user_id            VARCHAR(64),
+	create_user_id            VARCHAR(64),
+	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
+	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+);
+
+create sequence SEQ_MCC_DEF_ID increment by 1 minvalue 1 no maxvalue start with 1;
+
+CREATE UNIQUE INDEX I_MCC_CODE ON t_mcc_def (mcc_code);
+
+comment on table  t_mcc_def 					                is 'mcc 表';
+comment on column t_mcc_def.id 				                is 'id';
+comment on column t_mcc_def.mcc_code 			            is 'MCC code';
+comment on column t_mcc_def.mcc_name 			            is 'MCC描述';
+comment on column t_mcc_def.mcc_zh_desc 				      is 'MCC 中文';
+comment on column t_mcc_def.is_sys 				            is '是否系统使用 Y/N';
+comment on column t_mcc_def.status 		                is '是否可用';
+comment on column t_mcc_def.update_user_id 	          is '更新操作员';
+comment on column t_mcc_def.create_user_id 	          is '创建操作员';
+comment on column t_mcc_def.update_datetime 	        is '更新时间';
+comment on column t_mcc_def.create_datetime 	        is '创建时间';
+
+CREATE TABLE t_region_country
+(
+	id                        VARCHAR(64) NOT NULL PRIMARY KEY,
+	country_number            VARCHAR(8) NOT NULL,
+	name                      VARCHAR(256),
+	locale_name               VARCHAR(256),
+  zh_name                   VARCHAR(256),
+	region_code               VARCHAR(6),
+	is_country                VARCHAR(1),
+	is_sys                    VARCHAR(1) NOT NULL,
+  status                    VARCHAR(2),
+  update_user_id            VARCHAR(64),
+	create_user_id            VARCHAR(64),
+	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
+	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+);
+
+create sequence SEQ_REGION_COUNTRY increment by 1 minvalue 1 no maxvalue start with 1;
+
+CREATE INDEX I_REGION_CODE ON t_region_country (region_code);
+CREATE INDEX I_COUNTRY_NAME ON t_region_country (country_number,name);
+CREATE INDEX I_COUNTRY_ ON t_region_country (country_number);
+
+
+
+comment on table  t_region_country 					                  is '国家地区表';
+comment on column t_region_country.id 				                is 'id';
+comment on column t_region_country.country_number 			      is '地区国家数字码';
+comment on column t_region_country.name 			                is '地区英文名';
+comment on column t_region_country.locale_name 				        is '地区本地名';
+comment on column t_region_country.zh_name 				            is '地区中文名';
+comment on column t_region_country.region_code 				        is '地区code';
+comment on column t_region_country.is_country 				        is '是否是国家维度';
+comment on column t_region_country.is_sys 				            is '是否系统使用 Y/N';
+comment on column t_region_country.status 		                is '是否可用';
+comment on column t_region_country.update_user_id 	          is '更新操作员';
+comment on column t_region_country.create_user_id 	          is '创建操作员';
+comment on column t_region_country.update_datetime 	          is '更新时间';
+comment on column t_region_country.create_datetime 	          is '创建时间';
 
