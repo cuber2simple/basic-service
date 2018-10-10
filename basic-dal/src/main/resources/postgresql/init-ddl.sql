@@ -1,374 +1,421 @@
-CREATE TABLE t_app_def
+CREATE TABLE T_COUNTRY_3166
 (
-	id  					    VARCHAR(64) NOT NULL PRIMARY KEY,
-	app_name 				  VARCHAR(256) NOT NULL,
-	group_name				VARCHAR(256),
-	own_user_id       VARCHAR(64),
-	server_port       SMALLINT NOT NULL,
-	dubbo_port        INT,
-	kafka_topic       VARCHAR(256),
-	ext_setting       VARCHAR(256),
-	ext1_setting      VARCHAR(256),
-	context_path      VARCHAR(64),
-	app_desc          VARCHAR(1024),
-	status          	VARCHAR(2),
-	update_user_id    VARCHAR(64),
-	create_user_id    VARCHAR(64),
-	update_datetime   TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime   TIMESTAMP WITHOUT TIME ZONE
+  ID        	 	        			VARCHAR(64) NOT NULL PRIMARY KEY,
+  FIFA              					VARCHAR(64),
+  DIAL              					VARCHAR(64),
+  ALPHA_CODE_3              			VARCHAR(64),
+  MARC                 					VARCHAR(64),
+  IS_INDEPENDENT            			VARCHAR(256),
+  NUMBER_CODE               			VARCHAR(64),
+  GAUL               					VARCHAR(64),
+  FIPS                   				VARCHAR(64),
+  WMO          							VARCHAR(64),
+  ALPHA_CODE_2              			VARCHAR(64),
+  ITU            						VARCHAR(64),
+  IOC                    				VARCHAR(64),
+  DS                					VARCHAR(64),
+  GLOBAL_CODE							VARCHAR(32),
+  INTERMEDIATE_REGION_CODE				VARCHAR(64),
+  DEVELOP_TYPE							VARCHAR(64),
+  UNIVERSAL_CURRENCY					VARCHAR(256),
+  SMALL_ISLAND_DEVELOPING_STATUS		VARCHAR(256),
+  M49									VARCHAR(64),
+  SUB_REGION_CODE						VARCHAR(64),
+  REGION_CODE							VARCHAR(64),
+  LAND_LOCKED_DEVELOPING_COUNTRIES		VARCHAR(64),
+  INTERMEDIATE_REGION_NAME				VARCHAR(256),
+  OFFICIAL_NAME_CN						VARCHAR(1024),
+  OFFICIAL_NAME_EN						VARCHAR(1024),
+  ISO_3166_NAME							VARCHAR(1024),
+  LOCALE_NAME							VARCHAR(1024),
+  LASTED_DEVELOPED_COUNTRIES			VARCHAR(256),
+  REGION_NAME							VARCHAR(256),
+  SUB_REGION_NAME						VARCHAR(256),
+  GLOBAL_NAME							VARCHAR(64),
+  CAPITAL								VARCHAR(256),
+  CONTINENT								VARCHAR(64),
+  TLD									VARCHAR(64),
+  LANGUAGES								VARCHAR(256),
+  GEONAME_ID							VARCHAR(36),
+  CLDR_DISPLAY_NAME						VARCHAR(1024),
+  EDGAR									VARCHAR(64),
+  STATUS                    			VARCHAR(64),
+  UPDATE_USER_ID            			VARCHAR(64),
+  CREATE_USER_ID          				VARCHAR(64),
+  EXPIRE_DATETIME						TIMESTAMP WITHOUT TIME ZONE,
+  UPDATE_DATETIME         				TIMESTAMP WITHOUT TIME ZONE,
+  CREATE_DATETIME         				TIMESTAMP WITHOUT TIME ZONE
 );
 
-CREATE UNIQUE INDEX I_APP_NAME ON t_app_def (app_name);
+CREATE SEQUENCE SEQ_COUNTRY_3166 INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-create sequence SEQ_APP_DEF increment by 1 minvalue 1 no maxvalue start with 1;
+COMMENT ON TABLE  T_COUNTRY_3166 					                  			IS '国家表';
+COMMENT ON COLUMN T_COUNTRY_3166.ID 				                  			IS '主键';
+COMMENT ON COLUMN T_COUNTRY_3166.FIFA 				                  			IS '国际足球联盟';
+COMMENT ON COLUMN T_COUNTRY_3166.DIAL 				                  			IS '国际电话前缀';
+COMMENT ON COLUMN T_COUNTRY_3166.ALPHA_CODE_3 				                  	IS '3166 3字码';
+COMMENT ON COLUMN T_COUNTRY_3166.MARC 				                  			IS '机读目录';
+COMMENT ON COLUMN T_COUNTRY_3166.IS_INDEPENDENT 				                IS '是否独立国家';
+COMMENT ON COLUMN T_COUNTRY_3166.NUMBER_CODE 				                  	IS '3166 数字码';
+COMMENT ON COLUMN T_COUNTRY_3166.GAUL 				                  			IS '不知道是什么缩写';
+COMMENT ON COLUMN T_COUNTRY_3166.FIPS 				                  			IS '联邦信息处理标准';
+COMMENT ON COLUMN T_COUNTRY_3166.WMO 				                  			IS '世界气象组织';
+COMMENT ON COLUMN T_COUNTRY_3166.ALPHA_CODE_2 				                  	IS '3166 2字码';
+COMMENT ON COLUMN T_COUNTRY_3166.ITU 				                  			IS '国际电信联盟标准';
+COMMENT ON COLUMN T_COUNTRY_3166.IOC 				                  			IS '国际奥林匹克标准';
+COMMENT ON COLUMN T_COUNTRY_3166.DS 				                  			IS '不知道是什么标准';
+COMMENT ON COLUMN T_COUNTRY_3166.GLOBAL_CODE 				                  	IS '国际CODE';
+COMMENT ON COLUMN T_COUNTRY_3166.INTERMEDIATE_REGION_CODE 				        IS '中间地区编码';
+COMMENT ON COLUMN T_COUNTRY_3166.DEVELOP_TYPE 				                  	IS '发展类型';
+COMMENT ON COLUMN T_COUNTRY_3166.UNIVERSAL_CURRENCY 				            IS '通用币种使用,分割';
+COMMENT ON COLUMN T_COUNTRY_3166.SMALL_ISLAND_DEVELOPING_STATUS 				IS '是否是发展的小岛???';
+COMMENT ON COLUMN T_COUNTRY_3166.M49 				                  			IS '不知道是什么缩写';
+COMMENT ON COLUMN T_COUNTRY_3166.SUB_REGION_CODE 				                IS '子地区编码';
+COMMENT ON COLUMN T_COUNTRY_3166.REGION_CODE 				                  	IS '地区编码';
+COMMENT ON COLUMN T_COUNTRY_3166.LAND_LOCKED_DEVELOPING_COUNTRIES 				IS '地区编码';
+COMMENT ON COLUMN T_COUNTRY_3166.INTERMEDIATE_REGION_NAME 				        IS '地区编码';
+COMMENT ON COLUMN T_COUNTRY_3166.OFFICIAL_NAME_EN 				                IS '英文正式名字';
+COMMENT ON COLUMN T_COUNTRY_3166.OFFICIAL_NAME_CN 				                IS '中文正式名字';
+COMMENT ON COLUMN T_COUNTRY_3166.ISO_3166_NAME 				                	IS '3166国家名称';
+COMMENT ON COLUMN T_COUNTRY_3166.LOCALE_NAME 				                  	IS '本地化名称';
+COMMENT ON COLUMN T_COUNTRY_3166.LASTED_DEVELOPED_COUNTRIES 				    IS '是否最后的发展国家???';
+COMMENT ON COLUMN T_COUNTRY_3166.REGION_NAME 				                  	IS '地区名称';
+COMMENT ON COLUMN T_COUNTRY_3166.SUB_REGION_NAME 				                IS '子地区名称';
+COMMENT ON COLUMN T_COUNTRY_3166.GLOBAL_NAME 				                  	IS '全球名称';
+COMMENT ON COLUMN T_COUNTRY_3166.CAPITAL 				                  		IS '首都';
+COMMENT ON COLUMN T_COUNTRY_3166.CONTINENT 				                  		IS '国家';
+COMMENT ON COLUMN T_COUNTRY_3166.TLD 				                  			IS '顶级域名';
+COMMENT ON COLUMN T_COUNTRY_3166.LANGUAGES 				                  		IS '通用的语言使用,分割';
+COMMENT ON COLUMN T_COUNTRY_3166.GEONAME_ID 				                  	IS '地理位置ID';
+COMMENT ON COLUMN T_COUNTRY_3166.CLDR_DISPLAY_NAME 				                IS '不知道什么显示名称';
+COMMENT ON COLUMN T_COUNTRY_3166.EDGAR 				                			IS '检索系统';
+COMMENT ON COLUMN T_COUNTRY_3166.STATUS 				                  		IS '状态';
+COMMENT ON COLUMN T_COUNTRY_3166.UPDATE_USER_ID 				                IS '更新操作员';
+COMMENT ON COLUMN T_COUNTRY_3166.CREATE_USER_ID 				                IS '创建操作员';
+COMMENT ON COLUMN T_COUNTRY_3166.EXPIRE_DATETIME 				                IS '过期时间';
+COMMENT ON COLUMN T_COUNTRY_3166.UPDATE_DATETIME 				                IS '更新时间';
+COMMENT ON COLUMN T_COUNTRY_3166.CREATE_DATETIME 				                IS '创建时间';
 
-comment on table  t_app_def 					        is '服务表';
-comment on column t_app_def.id 				        is '主键';
-comment on column t_app_def.app_name 			    is '服务名';
-comment on column t_app_def.group_name 			  is '服务分组名';
-comment on column t_app_def.own_user_id 			is '服务owner用户';
-comment on column t_app_def.server_port 			is '服务端口';
-comment on column t_app_def.dubbo_port 			  is 'dubbo端口';
-comment on column t_app_def.kafka_topic 			is 'kafka话题,通常用于任务下发';
-comment on column t_app_def.ext_setting 			is '额外设置';
-comment on column t_app_def.ext1_setting 			is '额外设置1';
-comment on column t_app_def.context_path 			is '服务前缀';
-comment on column t_app_def.app_desc 			    is '服务描述';
-comment on column t_app_def.status 		        is '是否可用';
-comment on column t_app_def.update_user_id 	  is '更新操作员';
-comment on column t_app_def.create_user_id 	  is '创建操作员';
-comment on column t_app_def.create_datetime 	is '更新时间';
-comment on column t_app_def.create_datetime 	is '创建时间';
-
-
-CREATE TABLE t_cache_def
+CREATE TABLE T_APP_DEF
 (
-	id  					        VARCHAR(64) NOT NULL PRIMARY KEY,
-	cache_name 				    VARCHAR(256) NOT NULL,
-	app_name				      VARCHAR(256),
-	cache_zk_path         VARCHAR(512),
-	cache_redis_key       VARCHAR(512),
-	cache_ins_class       VARCHAR(1024),
-	bridge_class          VARCHAR(1024),
-	carrier_class         VARCHAR(1024),
-	field_keys            VARCHAR(1024),
-	is_global             VARCHAR(2),
-	is_durable            VARCHAR(2),
-  duration_of_minutes   INT,
-	last_load_datetime    TIMESTAMP WITHOUT TIME ZONE,
-	status          	    VARCHAR(2),
-	update_user_id        VARCHAR(64),
-	create_user_id        VARCHAR(64),
-	update_datetime       TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime       TIMESTAMP WITHOUT TIME ZONE
+	ID								VARCHAR(64) NOT NULL PRIMARY KEY,
+	APP_NAME						VARCHAR(256) NOT NULL,
+	GROUP_NAME						VARCHAR(256),
+	OWN_USER_ID						VARCHAR(64),
+	SERVER_PORT						SMALLINT NOT NULL,
+	DUBBO_PORT						INT,
+	KAFKA_TOPIC						VARCHAR(256),
+	EXT_SETTING						VARCHAR(256),
+	EXT1_SETTING					VARCHAR(256),
+	CONTEXT_PATH					VARCHAR(64),
+	APP_DESC						VARCHAR(1024),
+	STATUS							VARCHAR(64),
+	UPDATE_USER_ID    				VARCHAR(64),
+	CREATE_USER_ID    				VARCHAR(64),
+	EXPIRE_DATETIME					TIMESTAMP WITHOUT TIME ZONE,
+	UPDATE_DATETIME   				TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME   				TIMESTAMP WITHOUT TIME ZONE
 );
 
-CREATE UNIQUE INDEX I_CACHE_APP_NAME ON t_cache_def (cache_name,app_name);
+CREATE UNIQUE INDEX I_APP_NAME ON T_APP_DEF (APP_NAME);
 
-CREATE UNIQUE INDEX I_CACHE_ZK_PATH ON t_cache_def (cache_zk_path);
+CREATE SEQUENCE SEQ_APP_DEF INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-CREATE UNIQUE INDEX I_CACHE_REDIS_KEY ON t_cache_def (cache_redis_key);
-
-create sequence SEQ_CACHE_DEF increment by 1 minvalue 1 no maxvalue start with 1;
-
-comment on table  t_cache_def 					              is '缓存表';
-comment on column t_cache_def.id 				              is '主键';
-comment on column t_cache_def.cache_name 			        is '缓存名';
-comment on column t_cache_def.app_name 			          is '所在服务名';
-comment on column t_cache_def.cache_zk_path 			    is '缓存在的zookeeper path 用于更新全局缓存,比如说国家之类的通知监听地址,不是全局可置为空';
-comment on column t_cache_def.cache_redis_key 			  is '缓存在的redis_key';
-comment on column t_cache_def.cache_ins_class 			  is '缓存的class类名';
-comment on column t_cache_def.bridge_class 			      is '缓存的bridge类名';
-comment on column t_cache_def.carrier_class 			    is 'carrier类';
-comment on column t_cache_def.field_keys 			        is '缓存的key值;分割为key,为联合field key';
-comment on column t_cache_def.is_global 			        is '是否全局缓存  Y/N';
-comment on column t_cache_def.is_durable 			        is '是否长期缓存  Y/N  长期缓存不需要过期时间';
-comment on column t_cache_def.duration_of_minutes 		is '过期分钟';
-comment on column t_cache_def.last_load_datetime 			is '最后一次更新时间';
-comment on column t_cache_def.status 		              is '是否可用';
-comment on column t_cache_def.update_user_id 	        is '更新操作员';
-comment on column t_cache_def.create_user_id 	        is '创建操作员';
-comment on column t_cache_def.create_datetime 	      is '更新时间';
-comment on column t_cache_def.create_datetime 	      is '创建时间';
+COMMENT ON TABLE  T_APP_DEF 					        IS '服务表';
+COMMENT ON COLUMN T_APP_DEF.ID 				        	IS '主键';
+COMMENT ON COLUMN T_APP_DEF.APP_NAME 			    	IS '服务名';
+COMMENT ON COLUMN T_APP_DEF.GROUP_NAME 			  		IS '服务分组名';
+COMMENT ON COLUMN T_APP_DEF.OWN_USER_ID 				IS '服务OWNER用户';
+COMMENT ON COLUMN T_APP_DEF.SERVER_PORT 				IS '服务端口';
+COMMENT ON COLUMN T_APP_DEF.DUBBO_PORT 			  		IS 'DUBBO端口';
+COMMENT ON COLUMN T_APP_DEF.KAFKA_TOPIC 				IS 'KAFKA话题,通常用于任务下发';
+COMMENT ON COLUMN T_APP_DEF.EXT_SETTING 				IS '额外设置';
+COMMENT ON COLUMN T_APP_DEF.EXT1_SETTING 				IS '额外设置1';
+COMMENT ON COLUMN T_APP_DEF.CONTEXT_PATH 				IS '服务前缀';
+COMMENT ON COLUMN T_APP_DEF.APP_DESC 			    	IS '服务描述';
+COMMENT ON COLUMN T_APP_DEF.STATUS 		        		IS '是否可用';
+COMMENT ON COLUMN T_APP_DEF.UPDATE_USER_ID 	  			IS '更新操作员';
+COMMENT ON COLUMN T_APP_DEF.CREATE_USER_ID 	  			IS '创建操作员';
+COMMENT ON COLUMN T_APP_DEF.EXPIRE_DATETIME 			IS '过期时间';
+COMMENT ON COLUMN T_APP_DEF.UPDATE_DATETIME 			IS '更新时间';
+COMMENT ON COLUMN T_APP_DEF.CREATE_DATETIME 			IS '创建时间';
 
 
-
-CREATE TABLE t_biz_table_def
+CREATE TABLE T_CACHE_DEF
 (
-	id  					    VARCHAR(64) NOT NULL PRIMARY KEY,
-	table_name 				VARCHAR(256) NOT NULL,
-	schema				    VARCHAR(256),
-	app_name          VARCHAR(256),
-	t_class 				  VARCHAR(1024) NOT NULL,
-	pattern           VARCHAR(64),
-	biz_code          SMALLINT NOT NULL,
-	prefix 					  VARCHAR(4),
-	the_desc 					VARCHAR(1024),
-	is_sys					  VARCHAR(2),
-	status          	VARCHAR(2),
-	update_user_id    VARCHAR(64),
-	create_user_id    VARCHAR(64),
-	create_datetime   TIMESTAMP WITHOUT TIME ZONE
+	ID								VARCHAR(64) NOT NULL PRIMARY KEY,
+	CACHE_NAME						VARCHAR(256) NOT NULL,
+	APP_NAME						VARCHAR(256),
+	CACHE_ZK_PATH					VARCHAR(512),
+	CACHE_REDIS_KEY					VARCHAR(512),
+	CACHE_INS_CLASS					VARCHAR(1024),
+	BRIDGE_CLASS					VARCHAR(1024),
+	CARRIER_CLASS					VARCHAR(1024),
+	IS_GLOBAL						VARCHAR(64),
+	IS_DURABLE						VARCHAR(64),
+	DURATION_OF_MINUTES				INT,
+	LAST_LOAD_DATETIME				TIMESTAMP WITHOUT TIME ZONE,
+	STATUS							VARCHAR(64),
+	UPDATE_USER_ID					VARCHAR(64),
+	CREATE_USER_ID					VARCHAR(64),
+	EXPIRE_DATETIME       			TIMESTAMP WITHOUT TIME ZONE,
+	UPDATE_DATETIME       			TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME       			TIMESTAMP WITHOUT TIME ZONE
 );
 
-CREATE UNIQUE INDEX I_TABLE_NAME_SCHEMA ON t_biz_table_def (table_name,schema);
+CREATE UNIQUE INDEX I_CACHE_APP_NAME ON T_CACHE_DEF (CACHE_NAME,APP_NAME);
 
-create sequence SEQ_BIZ_TABLE_CONF increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE UNIQUE INDEX I_CACHE_ZK_PATH ON T_CACHE_DEF (CACHE_ZK_PATH);
 
-comment on table  t_biz_table_def 					        is '业务表配置';
-comment on column t_biz_table_def.id 				        is '主键';
-comment on column t_biz_table_def.table_name 			  is '表名';
-comment on column t_biz_table_def.schema 			      is '库名';
-comment on column t_biz_table_def.app_name 			    is '服务名';
-comment on column t_biz_table_def.t_class 			    is '类全名';
-comment on column t_biz_table_def.pattern 				  is '分表模式 yyyy_MM, yyyy_MM_dd';
-comment on column t_biz_table_def.biz_code 			    is '业务CODE(0-31)';
-comment on column t_biz_table_def.prefix 				    is 'ID前缀';
-comment on column t_biz_table_def.the_desc 			    is '业务分表描述';
-comment on column t_biz_table_def.is_sys 		        is '是否系统';
-comment on column t_biz_table_def.status 		        is '是否可用';
-comment on column t_biz_table_def.update_user_id 	  is '更新操作员';
-comment on column t_biz_table_def.create_user_id  	is '创建操作员';
-comment on column t_biz_table_def.create_datetime 	is '创建时间';
+CREATE UNIQUE INDEX I_CACHE_REDIS_KEY ON T_CACHE_DEF (CACHE_REDIS_KEY);
 
-create table t_country_3166
+CREATE SEQUENCE SEQ_CACHE_DEF INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
+
+COMMENT ON TABLE  T_CACHE_DEF										IS '缓存表';
+COMMENT ON COLUMN T_CACHE_DEF.ID									IS '主键';
+COMMENT ON COLUMN T_CACHE_DEF.CACHE_NAME 			        		IS '缓存名';
+COMMENT ON COLUMN T_CACHE_DEF.APP_NAME 			          			IS '所在服务名';
+COMMENT ON COLUMN T_CACHE_DEF.CACHE_ZK_PATH 			    		IS '缓存在的ZOOKEEPER PATH 用于更新全局缓存,比如说国家之类的通知监听地址,不是全局可置为空';
+COMMENT ON COLUMN T_CACHE_DEF.CACHE_REDIS_KEY 			  			IS '缓存在的REDIS_KEY';
+COMMENT ON COLUMN T_CACHE_DEF.CACHE_INS_CLASS 			  			IS '缓存的CLASS类名';
+COMMENT ON COLUMN T_CACHE_DEF.BRIDGE_CLASS 			     			IS '缓存的BRIDGE类名';
+COMMENT ON COLUMN T_CACHE_DEF.CARRIER_CLASS 			    		IS 'CARRIER类';
+COMMENT ON COLUMN T_CACHE_DEF.IS_GLOBAL 			        		IS '是否全局缓存 true/false';
+COMMENT ON COLUMN T_CACHE_DEF.IS_DURABLE 			        		IS '是否长期缓存 true/false';
+COMMENT ON COLUMN T_CACHE_DEF.DURATION_OF_MINUTES 					IS '过期分钟';
+COMMENT ON COLUMN T_CACHE_DEF.LAST_LOAD_DATETIME 					IS '最后一次更新时间';
+COMMENT ON COLUMN T_CACHE_DEF.STATUS 		              			IS '是否可用';
+COMMENT ON COLUMN T_CACHE_DEF.UPDATE_USER_ID 	        			IS '更新操作员';
+COMMENT ON COLUMN T_CACHE_DEF.CREATE_USER_ID 	        			IS '创建操作员';
+COMMENT ON COLUMN T_CACHE_DEF.EXPIRE_DATETIME 	      				IS '过期时间';
+COMMENT ON COLUMN T_CACHE_DEF.UPDATE_DATETIME 	      				IS '更新时间';
+COMMENT ON COLUMN T_CACHE_DEF.CREATE_DATETIME 	     				IS '创建时间';
+
+CREATE TABLE T_BIZ_TABLE_DEF
 (
-  id        	 	            VARCHAR(64) NOT NULL PRIMARY KEY,
-  alpha_code_2              VARCHAR(4) NOT NULL ,
-  alpha_code_3              VARCHAR(6) NOT NULL ,
-  number_code               VARCHAR(6) NOT NULL ,
-  ISO3166_2                 VARCHAR(32),
-  i18n_key                  VARCHAR(256),
-  name                      VARCHAR(256),
-  locale_name               VARCHAR(256),
-  zh_name                   VARCHAR(256),
-  current_currency          VARCHAR(6),
-  phone_code                VARCHAR(6),
-  ext_phone_code            VARCHAR(6),
-  region                    VARCHAR(256),
-  sub_region                VARCHAR(256),
-  intermediate_region       VARCHAR(256),
-  region_code               VARCHAR(6),
-  sub_region_code           VARCHAR(6),
-  intermediate_region_code  VARCHAR(6),
-  status                    VARCHAR(2),
-  update_user_id            VARCHAR(64),
-	create_user_id            VARCHAR(64),
-	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+	ID								VARCHAR(64) NOT NULL PRIMARY KEY,
+	TABLE_NAME 						VARCHAR(256) NOT NULL,
+	SCHEMA_NAME				    	VARCHAR(256),
+	APP_NAME          				VARCHAR(256),
+	T_CLASS 				  		VARCHAR(1024) NOT NULL,
+	PATTERN           				VARCHAR(64),
+	BIZ_CODE          				SMALLINT NOT NULL,
+	PREFIX 					  		VARCHAR(4),
+	THE_DESC 						VARCHAR(1024),
+	IS_SYS					  		VARCHAR(64),
+	STATUS          				VARCHAR(64),
+	UPDATE_USER_ID    				VARCHAR(64),
+	CREATE_USER_ID    				VARCHAR(64),
+	CREATE_DATETIME   				TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_COUNTRY_3166 increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE UNIQUE INDEX I_TABLE_NAME_SCHEMA ON T_BIZ_TABLE_DEF (TABLE_NAME,SCHEMA_NAME);
 
-comment on table  t_country_3166 					                  is '国家表';
-comment on column t_country_3166.id 				                is '主键';
-comment on column t_country_3166.alpha_code_2 			        is '国家2字码';
-comment on column t_country_3166.alpha_code_3 			        is '国家3字码';
-comment on column t_country_3166.number_code 			          is '国家数字码';
-comment on column t_country_3166.ISO3166_2 			            is '国家3166-2字码';
-comment on column t_country_3166.i18n_key 				          is '国家I18N';
-comment on column t_country_3166.name 			                is '国家英文名';
-comment on column t_country_3166.locale_name 			          is '国家本地名';
-comment on column t_country_3166.zh_name 			              is '国家中文名';
-comment on column t_country_3166.current_currency 			    is '国家通用币种';
-comment on column t_country_3166.phone_code 			          is '国家电话前缀';
-comment on column t_country_3166.ext_phone_code 			      is '国家电话区域前缀';
-comment on column t_country_3166.region 			              is '国家地区';
-comment on column t_country_3166.sub_region 				        is '国家子地区';
-comment on column t_country_3166.intermediate_region 			  is '国家中间地区';
-comment on column t_country_3166.region_code 		            is '国家地区编码';
-comment on column t_country_3166.sub_region_code 		        is '国家子地区编码';
-comment on column t_country_3166.intermediate_region_code 	is '国家中间地区编码';
-comment on column t_country_3166.status 		                is '是否可用';
-comment on column t_country_3166.update_user_id 	          is '更新操作员';
-comment on column t_country_3166.create_user_id 	          is '创建操作员';
-comment on column t_country_3166.update_datetime 	          is '更新时间';
-comment on column t_country_3166.create_datetime 	          is '创建时间';
+CREATE SEQUENCE SEQ_BIZ_TABLE_CONF INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-create table t_currency_4217
+COMMENT ON TABLE  T_BIZ_TABLE_DEF									IS '业务表配置';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.ID 				        		IS '主键';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.TABLE_NAME 			  			IS '表名';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.SCHEMA_NAME 			      		IS '库名';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.APP_NAME 			    			IS '服务名';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.T_CLASS 			    			IS '类全名';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.PATTERN 				  			IS '分表模式 YYYY_MM, YYYY_MM_DD';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.BIZ_CODE 			    			IS '业务CODE(0-31)';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.PREFIX 				    		IS 'ID前缀';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.THE_DESC 			    			IS '业务分表描述';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.IS_SYS 		        			IS '是否系统';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.STATUS 		        			IS '是否可用';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.UPDATE_USER_ID 	  				IS '更新操作员';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.CREATE_USER_ID  					IS '创建操作员';
+COMMENT ON COLUMN T_BIZ_TABLE_DEF.CREATE_DATETIME 					IS '创建时间';
+
+CREATE TABLE T_CURRENCY_4217
 (
-  id        	 	      VARCHAR(64) NOT NULL PRIMARY KEY,
-  alpha_code          VARCHAR(6) ,
-  number_code         VARCHAR(6) ,
-  minor_unit          SMALLINT default 0,
-  symbol_currency     VARCHAR(6),
-  i18n_key            VARCHAR(32),
-  name                VARCHAR(128),
-  locale_name         VARCHAR(256),
-  zh_name             VARCHAR(256),
-  country             VARCHAR(128),
-  grant_4_sale        VARCHAR(2),
-  grant_4_settle      VARCHAR(2),
-  status              VARCHAR(2),
-  update_user_id      VARCHAR(64),
-	create_user_id      VARCHAR(64),
-	update_datetime     TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime     TIMESTAMP WITHOUT TIME ZONE
+  ID        	 	     			VARCHAR(64) NOT NULL PRIMARY KEY,
+  ALPHA_CODE						VARCHAR(6) ,
+  NUMBER_CODE						VARCHAR(6) ,
+  MINOR_UNIT						SMALLINT DEFAULT 0,
+  SYMBOL_CURRENCY					VARCHAR(6),
+  I18N_KEY							VARCHAR(32),
+  OFFICIAL_NAME_EN                	VARCHAR(128),
+  OFFICIAL_NAME_CN         			VARCHAR(256),
+  LOCALE_NAME             			VARCHAR(256),
+  GRANT_4_SALE        				VARCHAR(64),
+  GRANT_4_SETTLE      				VARCHAR(64),
+  STATUS              				VARCHAR(64),
+  UPDATE_USER_ID      				VARCHAR(64),
+  CREATE_USER_ID      				VARCHAR(64),
+  EXPIRE_DATETIME     				TIMESTAMP WITHOUT TIME ZONE,
+  UPDATE_DATETIME     				TIMESTAMP WITHOUT TIME ZONE,
+  CREATE_DATETIME     				TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_CURRENCY_4217 increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE SEQUENCE SEQ_CURRENCY_4217 INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-comment on table  t_currency_4217 					                is '币种表';
-comment on column t_currency_4217.id 				                is '主键';
-comment on column t_currency_4217.alpha_code 			          is '币种字母码';
-comment on column t_currency_4217.number_code 			        is '币种数字码';
-comment on column t_currency_4217.minor_unit 			          is '币种最小单位';
-comment on column t_currency_4217.symbol_currency 			    is '币种符号';
-comment on column t_currency_4217.i18n_key 				          is '币种I18N';
-comment on column t_currency_4217.name 			                is '币种中文名';
-comment on column t_currency_4217.locale_name 			        is '币种当地名';
-comment on column t_currency_4217.zh_name 			            is '币种中文名';
-comment on column t_currency_4217.country 			            is '币种使用实体';
-comment on column t_currency_4217.grant_4_sale 				      is '是否是交易币种Y/N';
-comment on column t_currency_4217.grant_4_settle 			      is '是否是结算币种Y/N';
-comment on column t_currency_4217.status 		                is '是否可用';
-comment on column t_currency_4217.update_user_id 	          is '更新操作员';
-comment on column t_currency_4217.create_user_id 	          is '创建操作员';
-comment on column t_currency_4217.update_datetime 	        is '更新时间';
-comment on column t_currency_4217.create_datetime 	        is '创建时间';
+COMMENT ON TABLE  T_CURRENCY_4217 					                IS '币种表';
+COMMENT ON COLUMN T_CURRENCY_4217.ID 				                IS '主键';
+COMMENT ON COLUMN T_CURRENCY_4217.ALPHA_CODE 			          	IS '币种字母码';
+COMMENT ON COLUMN T_CURRENCY_4217.NUMBER_CODE 			        	IS '币种数字码';
+COMMENT ON COLUMN T_CURRENCY_4217.MINOR_UNIT 			          	IS '币种最小单位';
+COMMENT ON COLUMN T_CURRENCY_4217.SYMBOL_CURRENCY 			    	IS '币种符号';
+COMMENT ON COLUMN T_CURRENCY_4217.I18N_KEY 				          	IS '币种I18N';
+COMMENT ON COLUMN T_CURRENCY_4217.OFFICIAL_NAME_EN 			        IS '币种英文名';
+COMMENT ON COLUMN T_CURRENCY_4217.OFFICIAL_NAME_CN 			        IS '币种中文名';
+COMMENT ON COLUMN T_CURRENCY_4217.LOCALE_NAME 			            IS '币种当地名';
+COMMENT ON COLUMN T_CURRENCY_4217.GRANT_4_SALE 				      	IS '是否是交易币种true/false';
+COMMENT ON COLUMN T_CURRENCY_4217.GRANT_4_SETTLE 			      	IS '是否是结算币种true/false';
+COMMENT ON COLUMN T_CURRENCY_4217.STATUS 		                	IS '是否可用';
+COMMENT ON COLUMN T_CURRENCY_4217.UPDATE_USER_ID 	          		IS '更新操作员';
+COMMENT ON COLUMN T_CURRENCY_4217.CREATE_USER_ID 	          		IS '创建操作员';
+COMMENT ON COLUMN T_CURRENCY_4217.EXPIRE_DATETIME 	        		IS '过期时间';
+COMMENT ON COLUMN T_CURRENCY_4217.UPDATE_DATETIME 	        		IS '更新时间';
+COMMENT ON COLUMN T_CURRENCY_4217.CREATE_DATETIME 	        		IS '创建时间';
 
-CREATE TABLE t_dict_data
+CREATE TABLE T_DICT_DATA
 (
-	dict_code                 VARCHAR(64) NOT NULL  PRIMARY KEY,
-	parent_code               VARCHAR(64) NOT NULL,
-	tree_sort                 SMALLINT NOT NULL,
-	tree_leaf                 VARCHAR(2) NOT NULL,
-	tree_level                SMALLINT NOT NULL,
-	dict_label                VARCHAR(128) NOT NULL,
-	dict_value                VARCHAR(128) NOT NULL,
-	dict_name                 VARCHAR(128) NOT NULL,
-	dict_tag                  VARCHAR(256) NOT NULL,
-	is_sys                    VARCHAR(2) NOT NULL,
-	is_default                VARCHAR(2) NOT NULL,
-	the_desc                  VARCHAR(1024),
-	status                    VARCHAR(2),
-  update_user_id            VARCHAR(64),
-	create_user_id            VARCHAR(64),
-	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+	DICT_CODE                 		VARCHAR(64) NOT NULL  PRIMARY KEY,
+	PARENT_CODE               		VARCHAR(64) NOT NULL,
+	TREE_SORT                 		SMALLINT NOT NULL,
+	TREE_LEAF                 		VARCHAR(64) NOT NULL,
+	TREE_LEVEL                		SMALLINT NOT NULL,
+	DICT_LABEL                		VARCHAR(128) NOT NULL,
+	DICT_VALUE                		VARCHAR(128) NOT NULL,
+	DICT_NAME                 		VARCHAR(128) NOT NULL,
+	DICT_TAG                  		VARCHAR(256) NOT NULL,
+	IS_SYS                    		VARCHAR(64) NOT NULL,
+	IS_DEFAULT                		VARCHAR(64) NOT NULL,
+	THE_DESC                  		VARCHAR(1024),
+	STATUS                    		VARCHAR(64),
+	UPDATE_USER_ID            		VARCHAR(64),
+	CREATE_USER_ID            		VARCHAR(64),
+	EXPIRE_DATETIME					TIMESTAMP WITHOUT TIME ZONE,
+	UPDATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_DICT_DATA increment by 1 minvalue 1 no maxvalue start with 1;
-CREATE INDEX I_PARENT_CODE ON t_biz_table_def (parent_code);
-CREATE INDEX I_DICT_NAME ON t_biz_table_def (dict_name);
+CREATE SEQUENCE SEQ_DICT_DATA INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
+CREATE INDEX I_PARENT_CODE ON T_BIZ_TABLE_DEF (PARENT_CODE);
+CREATE INDEX I_DICT_NAME ON T_BIZ_TABLE_DEF (DICT_NAME);
 
-comment on table  t_dict_data 					                is '字典数据表';
-comment on column t_dict_data.dict_code 				        is '字典编码';
-comment on column t_dict_data.parent_code 			        is '父节点编码';
-comment on column t_dict_data.tree_sort 			          is '树排序';
-comment on column t_dict_data.tree_leaf 			          is '是否叶子节点  Y/N';
-comment on column t_dict_data.tree_level 			          is '叶子深度';
-comment on column t_dict_data.dict_label 				        is '字典标志';
-comment on column t_dict_data.dict_value 			          is '字典值';
-comment on column t_dict_data.dict_name 			          is '字典名';
-comment on column t_dict_data.dict_tag 			            is '字典标识';
-comment on column t_dict_data.is_sys 				            is '是否系统使用 Y/N';
-comment on column t_dict_data.is_default 				        is '是否默认选中 Y/N';
-comment on column t_dict_data.the_desc 				          is '描述';
-comment on column t_dict_data.status 		                is '是否可用';
-comment on column t_dict_data.update_user_id 	          is '更新操作员';
-comment on column t_dict_data.create_user_id 	          is '创建操作员';
-comment on column t_dict_data.update_datetime 	        is '更新时间';
-comment on column t_dict_data.create_datetime 	        is '创建时间';
+COMMENT ON TABLE  T_DICT_DATA 					                	IS '字典数据表';
+COMMENT ON COLUMN T_DICT_DATA.DICT_CODE 				        	IS '字典编码';
+COMMENT ON COLUMN T_DICT_DATA.PARENT_CODE 			        		IS '父节点编码';
+COMMENT ON COLUMN T_DICT_DATA.TREE_SORT 			          		IS '树排序';
+COMMENT ON COLUMN T_DICT_DATA.TREE_LEAF 			          		IS '是否叶子节点  true/false';
+COMMENT ON COLUMN T_DICT_DATA.TREE_LEVEL 			          		IS '叶子深度';
+COMMENT ON COLUMN T_DICT_DATA.DICT_LABEL 				        	IS '字典标志';
+COMMENT ON COLUMN T_DICT_DATA.DICT_VALUE 			          		IS '字典值';
+COMMENT ON COLUMN T_DICT_DATA.DICT_NAME 			          		IS '字典名';
+COMMENT ON COLUMN T_DICT_DATA.DICT_TAG 			            		IS '字典标识';
+COMMENT ON COLUMN T_DICT_DATA.IS_SYS 				            	IS '是否系统使用 true/false';
+COMMENT ON COLUMN T_DICT_DATA.IS_DEFAULT 				        	IS '是否默认选中 true/false';
+COMMENT ON COLUMN T_DICT_DATA.THE_DESC 				         	 	IS '描述';
+COMMENT ON COLUMN T_DICT_DATA.STATUS 		                		IS '是否可用';
+COMMENT ON COLUMN T_DICT_DATA.UPDATE_USER_ID 	          			IS '更新操作员';
+COMMENT ON COLUMN T_DICT_DATA.CREATE_USER_ID 	          			IS '创建操作员';
+COMMENT ON COLUMN T_DICT_DATA.EXPIRE_DATETIME 	        			IS '过期时间';
+COMMENT ON COLUMN T_DICT_DATA.UPDATE_DATETIME 	        			IS '更新时间';
+COMMENT ON COLUMN T_DICT_DATA.CREATE_DATETIME 	        			IS '创建时间';
 
-CREATE TABLE t_dict_type
+CREATE TABLE T_DICT
 (
-	id                        VARCHAR(64) NOT NULL PRIMARY KEY,
-	dict_name                 VARCHAR(128) NOT NULL,
-	dict_type                 VARCHAR(128) NOT NULL,
-	the_desc                  VARCHAR(1024),
-	is_sys                    VARCHAR(1) NOT NULL,
-  status                    VARCHAR(2),
-  update_user_id            VARCHAR(64),
-	create_user_id            VARCHAR(64),
-	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+	ID                        		VARCHAR(64) NOT NULL PRIMARY KEY,
+	DICT_NAME                 		VARCHAR(128) NOT NULL,
+	DICT_TYPE                 		VARCHAR(128) NOT NULL,
+	THE_DESC                  		VARCHAR(1024),
+	IS_SYS                    		VARCHAR(64) NOT NULL,
+	STATUS                    		VARCHAR(64),
+	UPDATE_USER_ID            		VARCHAR(64),
+	CREATE_USER_ID            		VARCHAR(64),
+	EXPIRE_DATETIME					TIMESTAMP WITHOUT TIME ZONE,
+	UPDATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_DICT_TYPE_ID increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE SEQUENCE SEQ_DICT_TYPE_ID INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-CREATE UNIQUE INDEX I_DICT_NAME ON t_dict_type (dict_name);
+CREATE UNIQUE INDEX I_DICT_NAME ON T_DICT (DICT_NAME);
 
-comment on table  t_dict_type 					                is '字典类型表';
-comment on column t_dict_type.id 				                is '字典编码';
-comment on column t_dict_type.dict_name 			          is '字典名称';
-comment on column t_dict_type.dict_type 			          is '字典类型';
-comment on column t_dict_type.is_sys 				            is '是否系统使用 Y/N';
-comment on column t_dict_type.the_desc 				          is '描述';
-comment on column t_dict_type.status 		                is '是否可用';
-comment on column t_dict_type.update_user_id 	          is '更新操作员';
-comment on column t_dict_type.create_user_id 	          is '创建操作员';
-comment on column t_dict_type.update_datetime 	        is '更新时间';
-comment on column t_dict_type.create_datetime 	        is '创建时间';
+COMMENT ON TABLE  T_DICT 					                IS '字典类型表';
+COMMENT ON COLUMN T_DICT.ID 				                IS '字典编码';
+COMMENT ON COLUMN T_DICT.DICT_NAME 			          		IS '字典名称';
+COMMENT ON COLUMN T_DICT.DICT_TYPE 			          		IS '字典类型';
+COMMENT ON COLUMN T_DICT.IS_SYS 				            IS '是否系统使用 true/false';
+COMMENT ON COLUMN T_DICT.THE_DESC 				          	IS '描述';
+COMMENT ON COLUMN T_DICT.STATUS 		                	IS '是否可用';
+COMMENT ON COLUMN T_DICT.UPDATE_USER_ID 	          		IS '更新操作员';
+COMMENT ON COLUMN T_DICT.CREATE_USER_ID 	          		IS '创建操作员';
+COMMENT ON COLUMN T_DICT.EXPIRE_DATETIME 	        		IS '过期时间';
+COMMENT ON COLUMN T_DICT.UPDATE_DATETIME 	        		IS '更新时间';
+COMMENT ON COLUMN T_DICT.CREATE_DATETIME 	        		IS '创建时间';
 
 
-CREATE TABLE t_mcc_def
+CREATE TABLE T_MCC_DEF
 (
-	id                        VARCHAR(64) NOT NULL PRIMARY KEY,
-	mcc_code                  VARCHAR(8) NOT NULL,
-	mcc_name                  VARCHAR(1024) NOT NULL,
-	mcc_zh_desc               VARCHAR(1024),
-	is_sys                    VARCHAR(1) NOT NULL,
-  status                    VARCHAR(2),
-  update_user_id            VARCHAR(64),
-	create_user_id            VARCHAR(64),
-	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+	ID                        		VARCHAR(64) NOT NULL PRIMARY KEY,
+	MCC_CODE                  		VARCHAR(8) NOT NULL,
+	OFFICIAL_NAME_EN                VARCHAR(1024) NOT NULL,
+	OFFICIAL_NAME_CN               	VARCHAR(1024),
+	IS_SYS                    		VARCHAR(64),
+	STATUS                    		VARCHAR(64),
+	UPDATE_USER_ID            		VARCHAR(64),
+	CREATE_USER_ID            		VARCHAR(64),
+	EXPIRE_DATETIME					TIMESTAMP WITHOUT TIME ZONE,
+	UPDATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_MCC_DEF_ID increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE SEQUENCE SEQ_MCC_DEF_ID INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-CREATE UNIQUE INDEX I_MCC_CODE ON t_mcc_def (mcc_code);
+CREATE UNIQUE INDEX I_MCC_CODE ON T_MCC_DEF (MCC_CODE);
 
-comment on table  t_mcc_def 					                is 'mcc 表';
-comment on column t_mcc_def.id 				                is 'id';
-comment on column t_mcc_def.mcc_code 			            is 'MCC code';
-comment on column t_mcc_def.mcc_name 			            is 'MCC描述';
-comment on column t_mcc_def.mcc_zh_desc 				      is 'MCC 中文';
-comment on column t_mcc_def.is_sys 				            is '是否系统使用 Y/N';
-comment on column t_mcc_def.status 		                is '是否可用';
-comment on column t_mcc_def.update_user_id 	          is '更新操作员';
-comment on column t_mcc_def.create_user_id 	          is '创建操作员';
-comment on column t_mcc_def.update_datetime 	        is '更新时间';
-comment on column t_mcc_def.create_datetime 	        is '创建时间';
+COMMENT ON TABLE  T_MCC_DEF 					            IS 'MCC 表';
+COMMENT ON COLUMN T_MCC_DEF.ID 				                IS 'ID';
+COMMENT ON COLUMN T_MCC_DEF.MCC_CODE 			            IS 'MCC CODE';
+COMMENT ON COLUMN T_MCC_DEF.OFFICIAL_NAME_EN 			    IS '英文正式名字';
+COMMENT ON COLUMN T_MCC_DEF.OFFICIAL_NAME_CN 				IS '英文中文名字';
+COMMENT ON COLUMN T_MCC_DEF.IS_SYS 				            IS '是否系统使用 true/false';
+COMMENT ON COLUMN T_MCC_DEF.STATUS 		                	IS '是否可用';
+COMMENT ON COLUMN T_MCC_DEF.UPDATE_USER_ID 	          		IS '更新操作员';
+COMMENT ON COLUMN T_MCC_DEF.CREATE_USER_ID 	          		IS '创建操作员';
+COMMENT ON COLUMN T_MCC_DEF.EXPIRE_DATETIME 	        	IS '过期时间';
+COMMENT ON COLUMN T_MCC_DEF.UPDATE_DATETIME 	        	IS '更新时间';
+COMMENT ON COLUMN T_MCC_DEF.CREATE_DATETIME 	        	IS '创建时间';
 
-CREATE TABLE t_region_country
+CREATE TABLE T_COUNTRY_REGION
 (
-	id                        VARCHAR(64) NOT NULL PRIMARY KEY,
-	country_number            VARCHAR(8) NOT NULL,
-	name                      VARCHAR(256),
-	locale_name               VARCHAR(256),
-  zh_name                   VARCHAR(256),
-	region_code               VARCHAR(6),
-	is_country                VARCHAR(1),
-	is_sys                    VARCHAR(1) NOT NULL,
-  status                    VARCHAR(2),
-  update_user_id            VARCHAR(64),
-	create_user_id            VARCHAR(64),
-	update_datetime           TIMESTAMP WITHOUT TIME ZONE,
-	create_datetime           TIMESTAMP WITHOUT TIME ZONE
+	ID                        		VARCHAR(64) NOT NULL PRIMARY KEY,
+	COUNTRY_NUMBER            		VARCHAR(8) NOT NULL,
+	OFFICIAL_NAME_EN          		VARCHAR(256),
+	OFFICIAL_NAME_CN          		VARCHAR(256),
+	LOCALE_NAME               		VARCHAR(256),
+	REGION_CODE               		VARCHAR(6),
+	IS_COUNTRY                		VARCHAR(64),
+	IS_SYS                    		VARCHAR(64) NOT NULL,
+	STATUS                    		VARCHAR(64),
+	UPDATE_USER_ID            		VARCHAR(64),
+	CREATE_USER_ID            		VARCHAR(64),
+	UPDATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE,
+	CREATE_DATETIME           		TIMESTAMP WITHOUT TIME ZONE
 );
 
-create sequence SEQ_REGION_COUNTRY increment by 1 minvalue 1 no maxvalue start with 1;
+CREATE SEQUENCE SEQ_COUNTRY_REGION INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-CREATE INDEX I_REGION_CODE ON t_region_country (region_code);
-CREATE INDEX I_COUNTRY_NAME ON t_region_country (country_number,name);
-CREATE INDEX I_COUNTRY_ ON t_region_country (country_number);
+CREATE INDEX I_REGION_CODE ON T_COUNTRY_REGION (REGION_CODE);
+CREATE INDEX I_COUNTRY_NAME ON T_COUNTRY_REGION (COUNTRY_NUMBER,OFFICIAL_NAME_EN);
+CREATE INDEX I_COUNTRY_REGION_NUMBER ON T_COUNTRY_REGION (COUNTRY_NUMBER);
 
-
-
-comment on table  t_region_country 					                  is '国家地区表';
-comment on column t_region_country.id 				                is 'id';
-comment on column t_region_country.country_number 			      is '地区国家数字码';
-comment on column t_region_country.name 			                is '地区英文名';
-comment on column t_region_country.locale_name 				        is '地区本地名';
-comment on column t_region_country.zh_name 				            is '地区中文名';
-comment on column t_region_country.region_code 				        is '地区code';
-comment on column t_region_country.is_country 				        is '是否是国家维度';
-comment on column t_region_country.is_sys 				            is '是否系统使用 Y/N';
-comment on column t_region_country.status 		                is '是否可用';
-comment on column t_region_country.update_user_id 	          is '更新操作员';
-comment on column t_region_country.create_user_id 	          is '创建操作员';
-comment on column t_region_country.update_datetime 	          is '更新时间';
-comment on column t_region_country.create_datetime 	          is '创建时间';
-
+COMMENT ON TABLE  T_COUNTRY_REGION 					        IS '国家地区表';
+COMMENT ON COLUMN T_COUNTRY_REGION.ID 				        IS 'ID';
+COMMENT ON COLUMN T_COUNTRY_REGION.COUNTRY_NUMBER 			IS '地区国家数字码';
+COMMENT ON COLUMN T_COUNTRY_REGION.OFFICIAL_NAME_EN 		IS '英文正式名字';
+COMMENT ON COLUMN T_COUNTRY_REGION.OFFICIAL_NAME_CN 		IS '英文中文名字';
+COMMENT ON COLUMN T_COUNTRY_REGION.LOCALE_NAME 				IS '地区本地化名';
+COMMENT ON COLUMN T_COUNTRY_REGION.REGION_CODE 				IS '地区CODE';
+COMMENT ON COLUMN T_COUNTRY_REGION.IS_COUNTRY 				IS '是否是国家维度';
+COMMENT ON COLUMN T_COUNTRY_REGION.IS_SYS 				    IS '是否系统使用 true/false';
+COMMENT ON COLUMN T_COUNTRY_REGION.STATUS 		            IS '是否可用';
+COMMENT ON COLUMN T_COUNTRY_REGION.UPDATE_USER_ID 	        IS '更新操作员';
+COMMENT ON COLUMN T_COUNTRY_REGION.CREATE_USER_ID 	        IS '创建操作员';
+COMMENT ON COLUMN T_COUNTRY_REGION.UPDATE_DATETIME 	        IS '更新时间';
+COMMENT ON COLUMN T_COUNTRY_REGION.CREATE_DATETIME 	        IS '创建时间';
